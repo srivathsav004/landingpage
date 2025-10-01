@@ -9,7 +9,7 @@ import { Footer } from './landing-page/components/footer';
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen overflow-x-hidden">
       <HeroSection />
       <DeveloperFeatures />
       <UseCases />
