@@ -146,6 +146,7 @@ export function DeveloperFeatures() {
           </h2>
           <p className="max-w-[860px] px-20 text-center text-[18px] leading-[1.6] text-[#5D5D5D]/80">
             Whether you're a start-up or a large financial institution,
+            <br />
             our system is designed only for your success.
           </p>
         </motion.div>
