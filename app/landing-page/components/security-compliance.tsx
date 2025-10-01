@@ -1,155 +1,146 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Check } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 
 const securityFeatures = [
+  'Multi-Factor Authentication',
+  'Granular Access Controls',
   'End-to-end encryption',
-  'Multi-factor authentication',
-  'Real-time fraud detection',
-  'Secure key management',
-  'PCI DSS Level 1 certified',
-  'Regular security audits',
 ];
 
 const complianceFeatures = [
-  'RBI guidelines compliant',
-  'KYC/AML verification',
-  'GDPR data protection',
-  'ISO 27001 certified',
-  'SOC 2 Type II compliant',
-  'Regular compliance updates',
+  'In-built Risk Monitoring',
+  'Advanced Fraud Detection',
+  'Comprehensive Audit Trails',
 ];
 
 export function SecurityCompliance() {
   return (
     <section className="py-20 bg-gray-50" id="security">
-      <div className="container mx-auto px-4">
+      <div className="mx-auto px-4 flex flex-col items-center" style={{ maxWidth: 1202 }}>
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="w-full flex flex-col items-center gap-5 mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            100% Secure & Compliant
+          <div className="inline-flex items-center gap-2 rounded-2xl border border-emerald-400 bg-white px-4 h-10 text-sm text-emerald-700 shadow">
+            <Sparkles className="w-4 h-4" />
+            <span className="font-medium">Safety First</span>
+          </div>
+
+          <h2 className="text-[40px] md:text-[48px] font-bold text-black text-center leading-tight">
+            100% Secure & Compliant.
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Bank-grade security and regulatory compliance built into every API call
+          <p className="text-[16px] md:text-[18px] text-[#5D5D5D] text-center opacity-80 max-w-[720px]">
+            Experience institutional grade security to guard your funds.
+            <br />
+            Robust risk engine to prevent fraudulent activities.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        {/* Cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 w-full justify-center">
+          {/* Security Card */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200"
+            className="relative rounded-2xl shadow-lg border border-gray-200 overflow-hidden bg-gradient-to-br from-emerald-50/40 to-indigo-50/40"
+            style={{ width: '100%', maxWidth: 593, height: 440 }}
           >
-            <div className="w-16 h-16 bg-emerald-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
-              <svg
-                className="w-8 h-8 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                />
-              </svg>
+            <div className="p-6 lg:pl-[66px] lg:pt-[83px] lg:pr-[200px] h-full flex flex-col">
+              {/* Heading + Subheading */}
+              <div>
+                <h3 className="text-[22px] md:text-[28px] font-semibold text-black leading-snug whitespace-nowrap">
+                  Institutional Grade Security
+                </h3>
+                <p className="text-[15px] md:text-[16px] text-black/80 whitespace-nowrap mb-6">
+                  Highly secure, battle-tested infrastructure.
+                </p>
+              </div>
+
+              {/* Features list */}
+              <ul className="space-y-3 flex-1">
+                {securityFeatures.map((feature, index) => (
+                  <motion.li
+                    key={feature}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.3, delay: index * 0.08 }}
+                    className="flex items-center gap-3 rounded-[12px] w-full max-w-[291px] h-10"
+                  >
+                    <div className="w-[30px] h-[30px] rounded-[9px] bg-[#24CB71] flex items-center justify-center">
+                      <img
+                        src={`/security/icons/${index === 0 ? 'mfa' : index === 1 ? 'access' : 'encryption'}.png`}
+                        alt="feature-icon"
+                        className="w-5 h-5 object-contain"
+                      />
+                    </div>
+                    <span className="text-[15px] md:text-[16px] text-black">{feature}</span>
+                  </motion.li>
+                ))}
+              </ul>
             </div>
 
-            <h3 className="text-3xl font-bold text-gray-900 mb-6">Security First</h3>
-
-            <ul className="space-y-4">
-              {securityFeatures.map((feature, index) => (
-                <motion.li
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  className="flex items-start gap-3"
-                >
-                  <div className="flex-shrink-0 w-6 h-6 bg-emerald-100 rounded-full flex items-center justify-center mt-0.5">
-                    <Check className="w-4 h-4 text-emerald-600" />
-                  </div>
-                  <span className="text-gray-700 text-lg">{feature}</span>
-                </motion.li>
-              ))}
-            </ul>
-
-            <div className="mt-8 p-4 bg-emerald-50 rounded-lg border border-emerald-200">
-              <div className="flex items-center justify-center gap-2 text-emerald-700">
-                <div className="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></div>
-                <span className="font-semibold">99.9% Uptime Guaranteed</span>
-              </div>
+            {/* Right Illustration */}
+            <div className="absolute right-6 bottom-6 lg:right-[36px] lg:top-[185px] w-[160px] h-[160px] lg:w-[186px] lg:h-[186px]">
+              <img src="/security/lock.png" alt="security-art" className="w-full h-full object-contain" />
             </div>
           </motion.div>
 
+          {/* Compliance Card */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200"
+            className="relative rounded-2xl shadow-lg border border-gray-200 overflow-hidden bg-gradient-to-br from-emerald-50/40 to-indigo-50/40"
+            style={{ width: '100%', maxWidth: 593, height: 440 }}
           >
-            <div className="w-16 h-16 bg-emerald-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
-              <svg
-                className="w-8 h-8 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                />
-              </svg>
+            <div className="p-6 lg:pl-[66px] lg:pt-[83px] lg:pr-[200px] h-full flex flex-col">
+              {/* Heading + Subheading */}
+              <div>
+                <h3 className="text-[22px] md:text-[28px] font-semibold text-black leading-snug whitespace-nowrap">
+                  Regulatory Compliance
+                </h3>
+                <p className="text-[15px] md:text-[16px] text-black/80 whitespace-nowrap mb-6">
+                  Sophisticated risk architecture, built for scale.
+                </p>
+              </div>
+
+              {/* Features list */}
+              <ul className="space-y-3 flex-1">
+                {complianceFeatures.map((feature, index) => (
+                  <motion.li
+                    key={feature}
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.3, delay: index * 0.08 }}
+                    className="flex items-center gap-3 rounded-[12px] w-full max-w-[291px] h-10"
+                  >
+                    <div className="w-[30px] h-[30px] rounded-[9px] bg-[#24CB71] flex items-center justify-center">
+                      <img
+                        src={`/security/icons/${index === 0 ? 'risk' : index === 1 ? 'fraud' : 'audit'}.png`}
+                        alt="feature-icon"
+                        className="w-5 h-5 object-contain"
+                      />
+                    </div>
+                    <span className="text-[15px] md:text-[16px] text-black">{feature}</span>
+                  </motion.li>
+                ))}
+              </ul>
             </div>
 
-            <h3 className="text-3xl font-bold text-gray-900 mb-6">Compliance Ready</h3>
-
-            <ul className="space-y-4">
-              {complianceFeatures.map((feature, index) => (
-                <motion.li
-                  key={index}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  className="flex items-start gap-3"
-                >
-                  <div className="flex-shrink-0 w-6 h-6 bg-emerald-100 rounded-full flex items-center justify-center mt-0.5">
-                    <Check className="w-4 h-4 text-emerald-600" />
-                  </div>
-                  <span className="text-gray-700 text-lg">{feature}</span>
-                </motion.li>
-              ))}
-            </ul>
-
-            <div className="mt-8 p-4 bg-emerald-50 rounded-lg border border-emerald-200">
-              <div className="flex items-center justify-center gap-2 text-emerald-700">
-                <svg
-                  className="w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span className="font-semibold">Fully Regulated Entity</span>
-              </div>
+            {/* Right Illustration */}
+            <div className="absolute right-6 bottom-6 lg:right-[36px] lg:top-[185px] w-[160px] h-[160px] lg:w-[186px] lg:h-[186px]">
+              <img src="/security/compliance.png" alt="compliance-art" className="w-full h-full object-contain" />
             </div>
           </motion.div>
         </div>
