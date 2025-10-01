@@ -1,96 +1,94 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { Sparkles } from 'lucide-react';
 
 const partners = [
-  { name: 'Tether', color: 'text-emerald-600' },
-  { name: 'Circle', color: 'text-blue-600' },
-  { name: 'Hyperverge', color: 'text-purple-600' },
-  { name: 'Sumsub', color: 'text-orange-600' },
-  { name: 'Chainalysis', color: 'text-indigo-600' },
-  { name: 'Nota Bene', color: 'text-red-600' },
-  { name: 'Ethereum', color: 'text-gray-700' },
-  { name: 'Polygon', color: 'text-purple-700' },
-  { name: 'Binance Chain', color: 'text-yellow-600' },
-  { name: 'Arbitrum', color: 'text-blue-700' },
-  { name: 'Tron', color: 'text-red-700' },
-  { name: 'Near', color: 'text-green-600' },
-  { name: 'Solana', color: 'text-purple-500' },
-  { name: 'CBLO', color: 'text-gray-600' },
-  { name: 'Optimism', color: 'text-red-500' },
-  { name: 'Deepvue', color: 'text-blue-800' },
+  { name: 'Tether', logo: 'tether.png' },
+  { name: 'Circle', logo: 'circle.png' },
+  { name: 'Hyperverge', logo: 'hyperverge.png' },
+  { name: 'Sumsub', logo: 'sumsub.png' },
+  { name: 'Chainalysis', logo: 'chainalysis.png' },
+  { name: 'Nota Bene', logo: 'notabene.png' },
+  { name: 'Ethereum', logo: 'ethereum.png' },
+  { name: 'Polygon', logo: 'polygon.png' },
+  { name: 'Binance Smart Chain', logo: 'binance.png' },
+  { name: 'Arbitrum', logo: 'arbitrum.png' },
+  { name: 'Tron', logo: 'tron.png' },
+  { name: 'Near', logo: 'near.png' },
+  { name: 'Solana', logo: 'solana.png' },
+  { name: 'Celo', logo: 'celo.png' },
+  { name: 'Optimism', logo: 'optimism.png' },
+  { name: 'Deepvue', logo: 'deepvue.png' },
 ];
 
 export function PartnersSection() {
   return (
     <section className="py-20 bg-white">
-      <div className="container mx-auto px-4">
+      <div className="mx-auto px-4 flex flex-col items-center" style={{ maxWidth: 860 }}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="w-full flex flex-col items-center gap-5 mb-10"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <div className="inline-flex items-center gap-2 rounded-2xl border border-emerald-400 bg-white px-4 h-10 text-sm text-emerald-700 shadow-[0_10px_18px_0_rgba(0,0,0,0.04),0_2px_6px_0_rgba(0,0,0,0.04),0_0_1px_0_rgba(0,0,0,0.04)]">
+            <Sparkles className="w-4 h-4" />
+            <span className="font-medium">Scalable Infra</span>
+          </div>
+
+          <h2 className="text-[40px] md:text-[48px] font-bold text-black text-center leading-tight">
             Reliable APIs. Built for Scale.
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Trusted by leading blockchain networks and compliance providers
+          <p className="text-[16px] md:text-[18px] text-[#5D5D5D] text-center opacity-80 w-full px-20 max-w-[860px]">
+            Purpose-built, reliable infrastructure with deep liquidity
+            <br />
+            to supercharge your ambitious growth journey.
           </p>
         </motion.div>
+      </div>
 
+      <div className="mx-auto" style={{ maxWidth: 1160 }}>
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 md:gap-8 max-w-6xl mx-auto"
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5 lg:gap-4 px-4"
         >
           {partners.map((partner, index) => (
             <motion.div
-              key={index}
+              key={partner.name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.05 }}
-              whileHover={{ scale: 1.05, y: -5 }}
-              className="bg-white border-2 border-gray-200 rounded-xl p-6 flex items-center justify-center hover:border-emerald-500 transition-all duration-300 hover:shadow-lg"
+              whileHover={{ scale: 1.03, y: -2 }}
+              className="bg-white border border-[#E8E8E8] rounded-[20px] flex items-center justify-center w-full h-[88px] sm:h-[96px]"
+              style={{ maxWidth: 278 }}
             >
-              <div className="text-center">
-                <div className={`text-2xl font-bold ${partner.color} mb-2`}>
-                  {partner.name.charAt(0)}
-                </div>
-                <span className="text-sm font-semibold text-gray-700">
-                  {partner.name}
-                </span>
-              </div>
+              <img
+                src={`/partners/${partner.logo}`}
+                alt={partner.name}
+                className="w-[140px] sm:w-[168px] h-[40px] sm:h-[54px] object-contain"
+              />
             </motion.div>
           ))}
         </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-16 text-center"
-        >
-          <div className="inline-flex items-center gap-4 bg-emerald-50 border border-emerald-200 rounded-full px-8 py-4">
-            <div className="flex -space-x-2">
-              <div className="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center text-white font-bold border-2 border-white">
-                15
-              </div>
-              <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold border-2 border-white">
-                +
-              </div>
-            </div>
-            <span className="text-gray-700 font-semibold">
-              Integrated with 15+ blockchain networks
-            </span>
-          </div>
-        </motion.div>
       </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        className="mt-12 text-center"
+      >
+        <div className="inline-flex items-center gap-3 bg-emerald-50 border border-emerald-200 rounded-full px-6 py-3 text-sm text-emerald-700">
+          <span className="font-semibold">Integrated with 15+ blockchain networks</span>
+        </div>
+      </motion.div>
     </section>
   );
 }
