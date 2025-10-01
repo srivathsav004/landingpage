@@ -2,9 +2,10 @@
 
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
-import { Copy, Check } from 'lucide-react';
+import { Copy, Check, Sparkles } from 'lucide-react';
 
 const codeExamples = {
   kycc: `const dollarpe = require('dollarpe-sdk');
@@ -109,73 +110,97 @@ export function CodeIntegration() {
   return (
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
+        {/* Heading */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.55, ease: 'easeOut' }}
+          className="flex flex-col items-center gap-6 mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Minimal Code, Seamless Integration
+          <div className="inline-flex items-center gap-2 rounded-2xl border border-emerald-500 bg-white px-4 py-2 text-sm font-medium text-emerald-600 shadow-sm">
+            <span
+              className="inline-flex h-6 w-6 items-center justify-center rounded-full"
+              style={{
+                background:
+                  'linear-gradient(199.26deg, rgba(217, 255, 237, 0.6) 38.67%, rgba(210, 225, 255, 0.6) 109.06%)',
+              }}
+            >
+              <Sparkles className="h-3.5 w-3.5 text-emerald-600" />
+            </span>
+            Easy Code
+          </div>
+          <h2 className="max-w-[860px] text-center text-[36px] md:text-[44px] leading-[1.2] font-bold text-black">
+            Minimal Code, Seamless Integration.
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Get started in minutes with our intuitive APIs and comprehensive SDKs
+          <p className="max-w-[820px] px-4 md:px-16 text-center text-[15px] md:text-[18px] leading-[1.6] text-[#5D5D5D]/80">
+            Expand to South East Asia effortlessly in just a few days
+            <br />
+            with our developer-friendly API documentation.
           </p>
         </motion.div>
 
+        {/* Code Editor */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-5xl mx-auto"
+          className="w-full max-w-[880px] mx-auto"
         >
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="grid grid-cols-2 md:grid-cols-5 w-full mb-8 h-auto gap-2 bg-gray-100 p-2">
-              <TabsTrigger value="kycc" className="text-sm md:text-base py-3">
-                KYCC
-              </TabsTrigger>
-              <TabsTrigger value="bankAccounts" className="text-sm md:text-base py-3">
-                Bank Accounts
-              </TabsTrigger>
-              <TabsTrigger value="cryptoToFiat" className="text-sm md:text-base py-3">
-                Crypto to Fiat
-              </TabsTrigger>
-              <TabsTrigger value="blockchainWallets" className="text-sm md:text-base py-3">
-                Wallets
-              </TabsTrigger>
-              <TabsTrigger value="fiatToCrypto" className="text-sm md:text-base py-3">
-                Fiat to Crypto
-              </TabsTrigger>
-            </TabsList>
-
             <TabsContent value={activeTab} className="mt-0">
-              <div className="relative bg-gray-900 rounded-xl overflow-hidden shadow-2xl border border-gray-700">
-                <div className="flex items-center justify-between px-6 py-4 bg-gray-800 border-b border-gray-700">
-                  <div className="flex gap-2">
-                    <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                    <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                    <div className="w-3 h-3 rounded-full bg-emerald-500"></div>
-                  </div>
-                  <span className="text-gray-400 text-sm font-mono">index.js</span>
+              <div
+                className="relative mx-auto overflow-hidden border border-[#E8E8E8] rounded-xl bg-white shadow-sm"
+                style={{ width: '100%', height: '420px' }} // ✅ smaller height
+              >
+                {/* Top Bar */}
+                <div className="flex items-center justify-between border-b border-[#E8E8E8] bg-[#F2F2F2] px-2 md:px-4 h-[48px]">
+                  {/* Tabs inside Top Bar */}
+                  <TabsList className="flex flex-wrap gap-2 bg-transparent border-0 shadow-none">
+                    {[
+                      { value: 'kycc', label: 'KYC/B', icon: 'kyc.png' },
+                      { value: 'bankAccounts', label: 'Bank', icon: 'bank.png' },
+                      { value: 'cryptoToFiat', label: 'Crypto → Fiat', icon: 'crypto.png' },
+                      { value: 'blockchainWallets', label: 'Wallets', icon: 'wallet.png' },
+                      { value: 'fiatToCrypto', label: 'Fiat → Crypto', icon: 'fiat.png' },
+                    ].map((tab) => (
+                      <TabsTrigger
+                        key={tab.value}
+                        value={tab.value}
+                        className="flex items-center justify-center gap-2 rounded-md px-2.5 py-1.5 h-[36px] text-xs md:text-sm font-medium transition"
+                        style={{
+                          backgroundColor: activeTab === tab.value ? '#24CB71' : '#D9D9D9',
+                          color: '#fff',
+                        }}
+                      >
+                        <Image
+                          src={`/editor-icons/${tab.icon}`}
+                          alt={tab.label}
+                          width={16}
+                          height={16}
+                          className="shrink-0"
+                        />
+                        <span>{tab.label}</span>
+                      </TabsTrigger>
+                    ))}
+                  </TabsList>
+
+                  {/* Copy button */}
                   <Button
                     variant="ghost"
                     size="sm"
                     onClick={handleCopy}
-                    className="text-gray-400 hover:text-white"
+                    className="text-gray-500 hover:text-gray-900"
                   >
-                    {copied ? (
-                      <Check className="w-4 h-4" />
-                    ) : (
-                      <Copy className="w-4 h-4" />
-                    )}
+                    {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                   </Button>
                 </div>
 
-                <div className="p-6 overflow-x-auto">
-                  <pre className="text-sm md:text-base">
-                    <code className="text-gray-300 font-mono leading-relaxed">
+                {/* Code Viewer */}
+                <div className="p-4 md:p-6 overflow-x-auto h-[calc(420px-48px)]">
+                  <pre className="text-xs md:text-sm lg:text-base">
+                    <code className="text-gray-800 font-mono leading-relaxed">
                       {displayedCode}
                       {isTyping && (
                         <motion.span
@@ -190,21 +215,6 @@ export function CodeIntegration() {
               </div>
             </TabsContent>
           </Tabs>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-8 text-center"
-          >
-            <Button
-              size="lg"
-              className="bg-emerald-500 hover:bg-emerald-600 text-white text-lg px-8"
-            >
-              View Full Documentation
-            </Button>
-          </motion.div>
         </motion.div>
       </div>
     </section>
