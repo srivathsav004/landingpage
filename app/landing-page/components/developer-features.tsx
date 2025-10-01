@@ -47,6 +47,7 @@ const item = {
 
 export function DeveloperFeatures() {
   return (
+    <>
     <section className="py-24 bg-white" id="benefits">
       <div className="container mx-auto px-4">
         <motion.div
@@ -116,5 +117,112 @@ export function DeveloperFeatures() {
         </motion.div>
       </div>
     </section>
+
+    {/* For Everyone Section */}
+    <section className="py-24 bg-white" id="for-everyone">
+      <div className="container mx-auto px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.55, ease: 'easeOut' }}
+          className="flex flex-col items-center gap-6 mb-12"
+        >
+          <div
+            className="inline-flex items-center gap-2 rounded-2xl border border-emerald-500 bg-white px-4 py-2 text-sm font-medium text-emerald-600 shadow-[0_10px_18px_0_rgba(0,0,0,0.04),0_2px_6px_0_rgba(0,0,0,0.04),0_0_1px_0_rgba(0,0,0,0.04)]"
+          >
+            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full"
+              style={{
+                background:
+                  'linear-gradient(199.26deg, rgba(217, 255, 237, 0.6) 38.67%, rgba(210, 225, 255, 0.6) 109.06%)',
+              }}
+            >
+              <Sparkles className="h-3.5 w-3.5 text-emerald-600" />
+            </span>
+            For Everyone
+          </div>
+          <h2 className="max-w-[860px] text-center text-[48px] leading-[1.16] font-bold text-black">
+            Built for Everyone.
+          </h2>
+          <p className="max-w-[860px] px-20 text-center text-[18px] leading-[1.6] text-[#5D5D5D]/80">
+            Whether you're a start-up or a large financial institution,
+            our system is designed only for your success.
+          </p>
+        </motion.div>
+
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          className="mx-auto grid max-w-[1202px] grid-cols-1 gap-8 md:grid-cols-2"
+        >
+          {/* Card 1 */}
+          <motion.div variants={item} className="p-3">
+            <Card
+              className="flex h-[326px] flex-col md:flex-row items-center justify-between rounded-2xl border-0 shadow-[0_6px_24px_rgba(0,0,0,0.06)]"
+              style={{
+                background:
+                  'linear-gradient(199.26deg, rgba(217, 255, 237, 0.3) 38.67%, rgba(210, 225, 255, 0.3) 109.06%)',
+              }}
+            >
+              <CardContent className="flex w-full flex-1 items-center gap-6 p-8">
+                <div className="flex-1">
+                  <h3 className="mb-3 max-w-[278px] text-[28px] leading-[1.2] font-semibold tracking-[-0.02em] text-black">
+                    No Monthly
+                    <br />
+                    Commitments
+                  </h3>
+                  <p className="max-w-[358px] text-[16px] leading-[1.5] text-black/80">
+                    Simply start building without worrying about any fixed monthly
+                    commitments, ever.
+                  </p>
+                </div>
+                <motion.div
+                  className="flex h-[189px] w-[206px] shrink-0 items-center justify-center rounded-2xl bg-transparent"
+                  whileHover={{ y: -4, scale: 1.02 }}
+                  transition={{ type: 'spring', stiffness: 220, damping: 18 }}
+                >
+                  <Image src="/developer/calendar.png" alt="No Monthly Commitments" width={206} height={189} />
+                </motion.div>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          {/* Card 2 */}
+          <motion.div variants={item} className="p-3">
+            <Card
+              className="flex h-[326px] flex-col md:flex-row items-center justify-between rounded-2xl border-0 shadow-[0_6px_24px_rgba(0,0,0,0.06)]"
+              style={{
+                background:
+                  'linear-gradient(199.26deg, rgba(217, 255, 237, 0.3) 38.67%, rgba(210, 225, 255, 0.3) 109.06%)',
+              }}
+            >
+              <CardContent className="flex w-full flex-1 items-center gap-6 p-8">
+                <div className="flex-1">
+                  <h3 className="mb-3 max-w-[278px] text-[28px] leading-[1.2] font-semibold tracking-[-0.02em] text-black">
+                    Pay As
+                    <br />
+                    You Scale
+                  </h3>
+                  <p className="max-w-[358px] text-[16px] leading-[1.5] text-black/80">
+                    Enjoy our affordable volume-based fee model, inherently designed to
+                    help you scale.
+                  </p>
+                </div>
+                <motion.div
+                  className="flex h-[189px] w-[206px] shrink-0 items-center justify-center rounded-2xl bg-transparent"
+                  whileHover={{ y: -4, scale: 1.02 }}
+                  transition={{ type: 'spring', stiffness: 220, damping: 18 }}
+                >
+                  <Image src="/developer/scale.png" alt="Pay As You Scale" width={206} height={189} />
+                </motion.div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+    </>
   );
 }
