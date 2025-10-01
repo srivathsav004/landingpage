@@ -1,39 +1,39 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Building2, ShoppingCart, Users, Smartphone, TrendingUp, Repeat } from 'lucide-react';
+import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
 
 const useCases = [
   {
-    icon: Building2,
-    title: 'Fintech Platforms',
-    description: 'Build compliant neo-banking and digital wallet solutions with integrated KYC and payment processing.',
+    image: '/usecases/neobank.png',
+    title: 'Global Neobanks',
+    description: 'Embed stablecoin payments in your product stack.',
   },
   {
-    icon: ShoppingCart,
-    title: 'E-Commerce',
-    description: 'Accept crypto and fiat payments seamlessly with automatic currency conversion and settlement.',
+    image: '/usecases/wallets.png',
+    title: 'Digital Wallets',
+    description: 'Enable stablecoin off-ramping to all local currencies.',
   },
   {
-    icon: Users,
-    title: 'P2P Platforms',
-    description: 'Enable peer-to-peer transactions with built-in escrow, verification, and dispute resolution.',
+    image: '/usecases/remittance.png',
+    title: 'Remittances',
+    description: 'Move money 24×7 across borders with speed.',
   },
   {
-    icon: Smartphone,
-    title: 'Mobile Apps',
-    description: 'Integrate financial services into your mobile app with our SDK and simple API endpoints.',
+    image: '/usecases/cards.png',
+    title: 'Card Issuers',
+    description: 'Instant off-ramping for funding any crypto-backed cards.',
   },
   {
-    icon: TrendingUp,
-    title: 'Investment Apps',
-    description: 'Offer crypto investment options with real-time pricing, portfolio tracking, and trading APIs.',
+    image: '/usecases/payroll.png',
+    title: 'Global Payrolls',
+    description: 'Pay contractors with ease, no matter where they are.',
   },
   {
-    icon: Repeat,
-    title: 'Remittance Services',
-    description: 'Build cross-border payment solutions with competitive rates and fast settlement times.',
+    image: '/usecases/treasury.png',
+    title: 'Modern Treasuries',
+    description: 'Manage stablecoin reserves, and conversions efficiently.',
   },
 ];
 
@@ -54,20 +54,27 @@ const item = {
 
 export function UseCases() {
   return (
-    <section className="py-20 bg-gray-50" id="solutions">
+    <section className="py-24 bg-white" id="solutions">
       <div className="container mx-auto px-4">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.55, ease: 'easeOut' }}
+          className="flex flex-col items-center gap-6 mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Empowering Next-Gen Businesses
+          <div
+            className="inline-flex items-center gap-2 rounded-2xl border border-emerald-500 bg-white px-4 py-2 text-sm font-medium text-emerald-600 shadow-[0_10px_18px_0_rgba(0,0,0,0.04),0_2px_6px_0_rgba(0,0,0,0.04),0_0_1px_0_rgba(0,0,0,0.04)]"
+          >
+            Use Cases
+          </div>
+          <h2 className="max-w-[860px] text-center text-[48px] leading-[1.16] font-bold text-black">
+            Empowering Next-Gen Businesses.
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            From startups to enterprises, DollarPe powers innovative financial solutions
+          <p className="max-w-[860px] px-20 text-center text-[18px] leading-[1.6] text-[#5D5D5D]/80">
+            Scale your business with low cost & instant stablecoin rails.
+            <br />
+            Build modern neobanks, payroll solutions and more.
           </p>
         </motion.div>
 
@@ -75,27 +82,48 @@ export function UseCases() {
           variants={container}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true }}
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          viewport={{ once: true, amount: 0.2 }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1202px] mx-auto"
         >
           {useCases.map((useCase, index) => (
             <motion.div
               key={index}
               variants={item}
-              whileHover={{ scale: 1.03 }}
-              transition={{ type: 'spring', stiffness: 300 }}
+              whileHover={{ y: -6, scale: 1.015 }}
+              transition={{ type: 'spring', stiffness: 240, damping: 20 }}
+              className="p-1"
             >
-              <Card className="h-full border-2 border-gray-200 hover:border-emerald-500 transition-all duration-300 hover:shadow-xl bg-white">
-                <CardContent className="p-8">
-                  <div className="w-16 h-16 bg-emerald-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
-                    <useCase.icon className="w-8 h-8 text-white" />
+              <Card
+                className="relative h-[393px] rounded-[17.23px] border-0 shadow-[0_6px_24px_rgba(0,0,0,0.06)] overflow-hidden ring-1 ring-white/60"
+                style={{
+                  background:
+                    'linear-gradient(360deg, rgba(210, 225, 255, 0.14) -9.34%, rgba(242, 242, 242, 0.30) 98.63%)',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundSize: '100% 100%'
+                }}
+              >
+                {/* soft spotlight accents */}
+                <div className="pointer-events-none absolute -top-10 -left-10 h-40 w-40 rounded-full opacity-40"
+                  style={{ background: 'radial-gradient(closest-side, rgba(210,225,255,0.35), rgba(210,225,255,0) 70%)' }}
+                />
+                <div className="pointer-events-none absolute -bottom-12 -right-12 h-48 w-48 rounded-full opacity-30"
+                  style={{ background: 'radial-gradient(closest-side, rgba(242,242,242,0.45), rgba(242,242,242,0) 70%)' }}
+                />
+                <CardContent className="h-full flex flex-col items-center justify-center gap-6 pt-[65.47px] pb-[65.47px] px-4 text-center">
+                  <div className="flex items-center justify-center">
+                  <div className="flex items-center justify-center">
+                    <Image src={useCase.image} alt={useCase.title} width={120} height={120} />
                   </div>
-                  <h3 className="text-2xl font-semibold text-gray-900 mb-4">
-                    {useCase.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {useCase.description}
-                  </p>
+
+                  </div>
+                  <div>
+                    <h3 className="mb-2 text-[24px] leading-[1.1] font-bold tracking-[0] text-[#2F2F2F]">
+                      {useCase.title}
+                    </h3>
+                    <p className="mx-auto max-w-[302px] text-[16px] leading-[1.5] text-black/80">
+                      {useCase.description}
+                    </p>
+                  </div>
                 </CardContent>
               </Card>
             </motion.div>
