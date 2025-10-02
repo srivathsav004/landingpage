@@ -1,111 +1,79 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Copy, Check, Sparkles } from 'lucide-react';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { oneLight } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 const codeExamples = {
-  kycc: `const dollarpe = require('dollarpe-sdk');
+  kycc: `// Imports
+import dollarpe, { Schema } from 'dollarpe'
 
-// Initialize KYC verification
-const verifyUser = async (userId) => {
-  const kyc = await dollarpe.kyc.verify({
-    userId: userId,
-    documents: ['aadhar', 'pan'],
-    liveness: true
-  });
+// Collection name
+export const collection = 'API Infra'
 
-  return kyc.status;
-};`,
+// Schema
+const schema = new Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  description: {
+    type: String
+  }
+}, {timestamps: true})
 
-  bankAccounts: `const dollarpe = require('dollarpe-sdk');
-
-// Create virtual bank account
-const createAccount = async (customerId) => {
-  const account = await dollarpe.accounts.create({
-    customerId: customerId,
-    currency: 'INR',
-    type: 'virtual'
-  });
-
-  return account.accountNumber;
-};`,
-
-  cryptoToFiat: `const dollarpe = require('dollarpe-sdk');
-
-// Convert crypto to fiat
-const convertCrypto = async (amount) => {
-  const conversion = await dollarpe.convert.cryptoToFiat({
-    amount: amount,
-    from: 'USDT',
-    to: 'INR',
-    network: 'polygon'
-  });
-
-  return conversion.amount;
-};`,
-
-  blockchainWallets: `const dollarpe = require('dollarpe-sdk');
-
-// Create blockchain wallet
-const createWallet = async (userId) => {
-  const wallet = await dollarpe.wallets.create({
-    userId: userId,
-    networks: ['ethereum', 'polygon'],
-    type: 'custodial'
-  });
-
-  return wallet.addresses;
-};`,
-
-  fiatToCrypto: `const dollarpe = require('dollarpe-sdk');
-
-// Convert fiat to crypto
-const buyFiat = async (amount) => {
-  const purchase = await dollarpe.convert.fiatToCrypto({
-    amount: amount,
-    from: 'INR',
-    to: 'USDT',
-    network: 'polygon'
-  });
-
-  return purchase.txHash;
-};`,
+// Model
+export default dollarpe.model(collection, schema, collection)`,
+  bankAccounts: `// Bank Account Example
+const account = await dollarpe.bank.create({
+  customerId: "1234",
+  type: "virtual",
+  currency: "INR"
+});`,
+  cryptoToFiat: `// Crypto → Fiat Example
+const conversion = await dollarpe.convert.cryptoToFiat({
+  amount: 100,
+  from: "USDT",
+  to: "INR",
+  network: "polygon"
+});`,
+  blockchainWallets: `// Blockchain Wallet Example
+const wallet = await dollarpe.wallets.create({
+  userId: "123",
+  networks: ["ethereum", "polygon"],
+  type: "custodial"
+});`,
+  fiatToCrypto: `// Fiat → Crypto Example
+const tx = await dollarpe.convert.fiatToCrypto({
+  amount: 5000,
+  from: "INR",
+  to: "USDT",
+  network: "polygon"
+});`,
 };
 
 export function CodeIntegration() {
-  const [activeTab, setActiveTab] = useState('kycc');
-  const [displayedCode, setDisplayedCode] = useState('');
+  const [activeTab, setActiveTab] = useState('kycc'); // default active: KYC/B
   const [copied, setCopied] = useState(false);
-  const [isTyping, setIsTyping] = useState(true);
-
-  useEffect(() => {
-    setIsTyping(true);
-    setDisplayedCode('');
-    const code = codeExamples[activeTab as keyof typeof codeExamples];
-    let index = 0;
-
-    const typeInterval = setInterval(() => {
-      if (index < code.length) {
-        setDisplayedCode(code.substring(0, index + 1));
-        index++;
-      } else {
-        setIsTyping(false);
-        clearInterval(typeInterval);
-      }
-    }, 10);
-
-    return () => clearInterval(typeInterval);
-  }, [activeTab]);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(codeExamples[activeTab as keyof typeof codeExamples]);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
+
+  const tabs = [
+    { value: 'kycc', label: 'KYC/B', icon: 'kyc.png', width: 'w-[111px]' },
+    { value: 'bankAccounts', label: 'Bank Accounts', icon: 'bank.png', width: 'w-[165px]' },
+    { value: 'cryptoToFiat', label: 'Crypto to Fiat', icon: 'crypto.png', width: 'w-[157px]' },
+    { value: 'blockchainWallets', label: 'Blockchain Wallets', icon: 'wallet.png', width: 'w-[191px]' },
+    { value: 'fiatToCrypto', label: 'Fiat to Crypto', icon: 'fiat.png', width: 'w-[157px]' },
+  ];
 
   return (
     <section className="py-20 bg-white">
@@ -146,77 +114,78 @@ export function CodeIntegration() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="w-full max-w-[880px] mx-auto"
+          className="w-full max-w-[1046px] mx-auto"
         >
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsContent value={activeTab} className="mt-0">
-              <div
-                className="relative mx-auto overflow-hidden border border-[#E8E8E8] rounded-xl bg-white shadow-sm"
-                style={{ width: '100%', height: '420px' }} // ✅ smaller height
-              >
-                {/* Top Bar */}
-                <div className="flex items-center justify-between border-b border-[#E8E8E8] bg-[#F2F2F2] px-2 md:px-4 h-[48px]">
-                  {/* Tabs inside Top Bar */}
-                  <TabsList className="flex flex-wrap gap-2 bg-transparent border-0 shadow-none">
-                    {[
-                      { value: 'kycc', label: 'KYC/B', icon: 'kyc.png' },
-                      { value: 'bankAccounts', label: 'Bank', icon: 'bank.png' },
-                      { value: 'cryptoToFiat', label: 'Crypto → Fiat', icon: 'crypto.png' },
-                      { value: 'blockchainWallets', label: 'Wallets', icon: 'wallet.png' },
-                      { value: 'fiatToCrypto', label: 'Fiat → Crypto', icon: 'fiat.png' },
-                    ].map((tab) => (
-                      <TabsTrigger
-                        key={tab.value}
-                        value={tab.value}
-                        className="flex items-center justify-center gap-2 rounded-md px-2.5 py-1.5 h-[36px] text-xs md:text-sm font-medium transition"
-                        style={{
-                          backgroundColor: activeTab === tab.value ? '#24CB71' : '#D9D9D9',
-                          color: '#fff',
-                        }}
-                      >
-                        <Image
-                          src={`/editor-icons/${tab.icon}`}
-                          alt={tab.label}
-                          width={16}
-                          height={16}
-                          className="shrink-0"
-                        />
-                        <span>{tab.label}</span>
-                      </TabsTrigger>
-                    ))}
-                  </TabsList>
+            <div
+              className="relative mx-auto overflow-hidden border-2 border-[#E8E8E8] rounded-xl bg-white shadow-sm"
+              style={{ height: 581 }}
+            >
+              {/* File Tabs Row */}
+              <div className="flex items-center border-b border-[#E8E8E8] bg-[#F2F2F2] h-[51px]">
+                <TabsList className="flex w-full gap-0 bg-transparent border-0 shadow-none p-0">
+                  {tabs.map((tab) => (
+                    <TabsTrigger
+                      key={tab.value}
+                      value={tab.value}
+                      className={`flex items-center justify-center gap-2 px-4 h-[51px] ${tab.width} text-xs transition-all
+                        ${activeTab === tab.value
+                          ? '!bg-[#24CB71] !text-white !font-bold'
+                          : '!bg-[#FFFFFF1A] !text-[#5D5D5D]'
+                        }`}
+                    >
+                      <Image
+                        src={`/editor-icons/${tab.icon}`}
+                        alt={tab.label}
+                        width={20}
+                        height={20}
+                        className="shrink-0"
+                      />
+                      <span>{tab.label}</span>
+                    </TabsTrigger>
+                  ))}
+                </TabsList>
 
-                  {/* Copy button */}
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={handleCopy}
-                    className="text-gray-500 hover:text-gray-900"
-                  >
-                    {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-                  </Button>
-                </div>
-
-                {/* Code Viewer */}
-                <div className="p-4 md:p-6 overflow-x-auto h-[calc(420px-48px)]">
-                  <pre className="text-xs md:text-sm lg:text-base">
-                    <code className="text-gray-800 font-mono leading-relaxed">
-                      {displayedCode}
-                      {isTyping && (
-                        <motion.span
-                          animate={{ opacity: [1, 0] }}
-                          transition={{ duration: 0.5, repeat: Infinity }}
-                          className="inline-block w-2 h-5 bg-emerald-500 ml-1"
-                        />
-                      )}
-                    </code>
-                  </pre>
-                </div>
+                {/* Copy button */}
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleCopy}
+                  className="text-gray-500 hover:text-gray-900 mr-2"
+                >
+                  {copied ? <Check className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
+                </Button>
               </div>
-            </TabsContent>
+
+              {/* Code Viewer */}
+              <TabsContent value={activeTab} className="p-0 h-[530px]">
+                <div className="bg-white font-mono text-sm leading-relaxed h-full overflow-auto p-6">
+                  <SyntaxHighlighter
+                    language="javascript"
+                    style={oneLight}
+                    showLineNumbers
+                    wrapLines
+                    customStyle={{
+                      background: 'transparent',
+                      margin: 0,
+                      padding: 0,
+                      fontSize: '14px',
+                      height: '100%',
+                    }}
+                    codeTagProps={{
+                      style: { background: 'transparent' },
+                    }}
+                  >
+                    {codeExamples[activeTab as keyof typeof codeExamples]}
+                  </SyntaxHighlighter>
+                </div>
+              </TabsContent>
+            </div>
           </Tabs>
         </motion.div>
       </div>
     </section>
   );
 }
+
+export default CodeIntegration;
