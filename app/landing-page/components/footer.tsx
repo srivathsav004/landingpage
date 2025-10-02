@@ -6,17 +6,17 @@ import Image from 'next/image';
 
 export function Footer() {
   return (
-    <footer className="relative w-full">
+    <footer className="relative w-full overflow-hidden">
       {/* Main Footer Container */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="mx-auto max-w-[1402px] bg-[#F2F2F24D] rounded-[32px] px-6 lg:px-12 py-8 lg:py-12"
+        className="mx-auto w-full max-w-[1402px] bg-[#F2F2F24D] rounded-[32px] px-4 sm:px-6 lg:px-8 py-6 lg:py-8"
       >
         {/* Main Content Container */}
-        <div className="w-full flex flex-col lg:flex-row justify-between items-start gap-10 lg:gap-16">
+        <div className="w-full flex flex-col lg:flex-row justify-between items-start gap-6 lg:gap-8">
           
           {/* Left Section - Logo, Social Icons, and Description */}
           <motion.div
@@ -87,7 +87,7 @@ export function Footer() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex gap-12 lg:gap-16 flex-wrap"
+            className="flex gap-6 lg:gap-8 flex-wrap"
           >
             {/* Company Section */}
             <div className="flex flex-col gap-5">
@@ -121,7 +121,7 @@ export function Footer() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="flex flex-col lg:flex-row justify-between items-center gap-6 mt-10"
+          className="flex flex-col lg:flex-row justify-between items-center gap-4 mt-6"
         >
           {/* Copyright */}
           <p className="text-black text-sm lg:text-base opacity-80 text-center lg:text-left">
