@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Tabs, TabsContent } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
@@ -57,10 +57,23 @@ const tx = await dollarpe.convert.fiatToCrypto({
 });`,
 };
 
+const tabs = [
+  { value: 'kycc', label: 'KYC/B', icon: 'kyc.png' },
+  { value: 'bankAccounts', label: 'Bank Accounts', icon: 'bank.png' },
+  { value: 'cryptoToFiat', label: 'Crypto to Fiat', icon: 'crypto.png' },
+  { value: 'blockchainWallets', label: 'Blockchain Wallets', icon: 'wallet.png' },
+  { value: 'fiatToCrypto', label: 'Fiat to Crypto', icon: 'fiat.png' },
+];
+
 export function CodeIntegration() {
   const [activeTab, setActiveTab] = useState('kycc');
   const [copied, setCopied] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(codeExamples[activeTab]);
@@ -68,15 +81,11 @@ export function CodeIntegration() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const tabs = [
-    { value: 'kycc', label: 'KYC/B', icon: 'kyc.png' },
-    { value: 'bankAccounts', label: 'Bank Accounts', icon: 'bank.png' },
-    { value: 'cryptoToFiat', label: 'Crypto to Fiat', icon: 'crypto.png' },
-    { value: 'blockchainWallets', label: 'Blockchain Wallets', icon: 'wallet.png' },
-    { value: 'fiatToCrypto', label: 'Fiat to Crypto', icon: 'fiat.png' },
-  ];
-
   const activeTabData = tabs.find(tab => tab.value === activeTab);
+
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <section className="py-12 md:py-20 bg-white">
