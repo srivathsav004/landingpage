@@ -1,184 +1,242 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 
-const currencies = [
-  { code: 'INR', name: 'Indian Rupee', angle: 0, color: 'bg-orange-500' },
-  { code: 'PHP', name: 'Philippine Peso', angle: 51.43, color: 'bg-red-500' },
-  { code: 'VND', name: 'Vietnamese Dong', angle: 102.86, color: 'bg-yellow-500' },
-  { code: 'MYR', name: 'Malaysian Ringgit', angle: 154.29, color: 'bg-blue-500' },
-  { code: 'THB', name: 'Thai Baht', angle: 205.72, color: 'bg-purple-500' },
-  { code: 'IDR', name: 'Indonesian Rupiah', angle: 257.15, color: 'bg-green-500' },
-  { code: 'SGD', name: 'Singapore Dollar', angle: 308.58, color: 'bg-pink-500' },
-];
+ type Chip = {
+   code: string;
+   img: string;
+   // Absolute placement around the globe container (percentages allow responsive positioning)
+   leftPercent: number; // can exceed 100 to place outside
+   topPercent: number;
+ };
+
+ const chips: Chip[] = [
+   { code: 'INR', img: '/api-coverage/globe/chip-inr.png', leftPercent: 102, topPercent: 8 },
+   { code: 'PHP', img: '/api-coverage/globe/chip-php.png', leftPercent: 118, topPercent: 20 },
+   { code: 'VND', img: '/api-coverage/globe/chip-vnd.png', leftPercent: 118, topPercent: 34 },
+   { code: 'MYR', img: '/api-coverage/globe/chip-myr.png', leftPercent: 118, topPercent: 50 },
+   { code: 'THB', img: '/api-coverage/globe/chip-thb.png', leftPercent: 116, topPercent: 66 },
+   { code: 'IDR', img: '/api-coverage/globe/chip-idr.png', leftPercent: 102, topPercent: 58 },
+   { code: 'SGD', img: '/api-coverage/globe/chip-sgd.png', leftPercent: 90, topPercent: 102 },
+ ];
 
 export function ApiCoverage() {
   return (
-    <section className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-              Single API.{' '}
-              <span className="text-emerald-500">Entire South East Asia</span>
-            </h2>
-            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              Access multiple currencies and payment rails across Southeast Asia with
-              one unified integration. Expand your reach without the complexity.
-            </p>
+    <section
+       className="py-10 md:py-12"
+      style={{
+        background:
+          'linear-gradient(90deg, rgba(210,225,255,0.2) 7.77%, rgba(217,255,237,0.1) 96.99%)',
+        borderRadius: 24,
+      }}
+    >
+       <div className="relative rounded-[24px] overflow-hidden">
+        {/* subtle dots overlay */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage: 'url(/api-coverage/bg/dots-pattern.png)',
+            backgroundRepeat: 'repeat',
+             opacity: 0.25,
+            borderRadius: 24,
+          }}
+        />
 
-            <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <Button
-                size="lg"
-                className="bg-emerald-500 hover:bg-emerald-600 text-white text-lg px-8"
-              >
-                View Documentation
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="text-lg px-8 border-2 border-gray-300 hover:border-emerald-500"
-              >
-                Book Demo
-              </Button>
-            </div>
+         <div className="relative container mx-auto px-4">
+           <div className="grid lg:grid-cols-[1.05fr_0.9fr_1.05fr] gap-8 lg:gap-10 items-center max-w-[1402px] lg:h-[539px] mx-auto">
+            {/* Left: text + CTAs */}
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                 Single API. <span className="text-emerald-500">Entire South East Asia.</span>
+               </h2>
 
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-white rounded-xl p-6 border-2 border-gray-200">
-                <div className="text-3xl font-bold text-emerald-500 mb-2">7+</div>
-                <div className="text-gray-600 font-medium">Currencies Supported</div>
+               <div className="flex flex-col sm:flex-row gap-4 mb-2">
+                <Button
+                   size="lg"
+                   className="bg-emerald-500 hover:bg-emerald-600 text-white text-base px-6 py-5 rounded-xl"
+                  asChild
+                >
+                  <a href="#docs" aria-label="View documentation for DollarPe API">
+                    View Docs
+                  </a>
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                   className="text-base px-6 py-5 rounded-xl border-2 border-gray-200 hover:border-emerald-500"
+                  asChild
+                >
+                  <a href="#demo" aria-label="Book a demo of DollarPe">
+                    Book Demo
+                  </a>
+                </Button>
               </div>
-              <div className="bg-white rounded-xl p-6 border-2 border-gray-200">
-                <div className="text-3xl font-bold text-emerald-500 mb-2">15+</div>
-                <div className="text-gray-600 font-medium">Blockchain Networks</div>
+
+               {/* accent dashed line to match design */}
+               <div className="hidden md:block mt-10">
+                 <div className="h-1 w-24 rounded-full border-b-2 border-dashed border-emerald-400" />
+               </div>
+            </motion.div>
+
+            {/* Middle: token icons -> connectors -> DollarPe pill */}
+             <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+               className="relative h-[280px] md:h-[320px]"
+            >
+              <div className="absolute inset-0 flex items-center justify-center">
+                <motion.div
+                  initial={{ scale: 0.95, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.6 }}
+                   className="relative w-full max-w-[420px]"
+                >
+                  {/* top connector */}
+                   <Image
+                     src="/api-coverage/middle/connector-top.png"
+                    alt="connector"
+                     width={420}
+                     height={40}
+                     className="mx-auto w-[78%] md:w-[84%] select-none"
+                  />
+
+                  {/* DollarPe pill */}
+                  <motion.div
+                    className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+                    animate={{ y: [0, -4, 0] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                  >
+                     <Image
+                      src="/api-coverage/middle/dollarpe-pill.png"
+                      alt="DollarPe"
+                       width={228}
+                       height={62}
+                      className="drop-shadow-xl select-none"
+                      priority
+                    />
+                  </motion.div>
+
+                  {/* bottom connector */}
+                   <Image
+                    src="/api-coverage/middle/connector-bottom.png"
+                    alt="connector"
+                     width={420}
+                     height={40}
+                     className="mx-auto w-[78%] md:w-[84%] select-none"
+                  />
+
+                  {/* token icons */}
+                   <motion.div
+                    className="absolute left-1/2 -translate-x-1/2 top-3 md:top-2"
+                    animate={{ y: [0, 3, 0] }}
+                    transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }}
+                  >
+                    <Image
+                      src="/api-coverage/middle/tether.png"
+                      alt="Tether USDT"
+                       width={64}
+                       height={64}
+                      className="select-none"
+                    />
+                  </motion.div>
+                   <motion.div
+                    className="absolute left-1/2 -translate-x-1/2 bottom-3 md:bottom-2"
+                    animate={{ y: [0, -3, 0] }}
+                    transition={{ duration: 2.6, repeat: Infinity, ease: 'easeInOut' }}
+                  >
+                    <Image
+                      src="/api-coverage/middle/usdc.png"
+                      alt="USD Coin"
+                       width={64}
+                       height={64}
+                      className="select-none"
+                    />
+                  </motion.div>
+                </motion.div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="relative h-[500px] flex items-center justify-center"
-          >
-            <div className="relative w-full h-full">
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
-                className="absolute inset-0"
-              >
-                {currencies.map((currency, index) => {
-                  const radius = 180;
-                  const x = Math.cos((currency.angle * Math.PI) / 180) * radius;
-                  const y = Math.sin((currency.angle * Math.PI) / 180) * radius;
+            {/* Right: globe + diamond + chips */}
+             <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+               className="relative h-[300px] md:h-[360px] flex items-center justify-center"
+            >
+               <div className="relative w-[280px] h-[280px] md:w-[340px] md:h-[340px]">
+                {/* rotating globe wireframe */}
+                 <div className="absolute inset-0">
+                  <Image
+                    src="/api-coverage/globe/globe-base.png"
+                    alt="Globe"
+                    fill
+                     sizes="(max-width: 768px) 300px, 380px"
+                    className="object-contain select-none"
+                  />
+                 </div>
 
-                  return (
-                    <motion.div
-                      key={currency.code}
-                      initial={{ opacity: 0, scale: 0 }}
+                {/* diamond pulse */}
+                 <motion.div
+                   className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+                   animate={{ scale: [1, 1.06, 1], opacity: [1, 0.95, 1] }}
+                   transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                 >
+                  <Image
+                    src="/api-coverage/globe/globe-diamond.png"
+                    alt="Diamond"
+                    width={132}
+                    height={132}
+                    className="select-none"
+                  />
+                </motion.div>
+                 <div
+                   className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+                 >
+                  <Image
+                    src="/api-coverage/globe/dollarpe-mark.png"
+                    alt="DollarPe"
+                    width={48}
+                    height={48}
+                    className="select-none"
+                  />
+                 </div>
+
+                {/* chips around globe + animated dashed links from nodes */}
+                 {chips.map((chip, idx) => {
+                   return (
+                   <motion.div
+                      key={chip.code}
+                     className="absolute z-10"
+                       style={{ left: `${chip.leftPercent}%`, top: `${chip.topPercent}%` }}
+                      initial={{ opacity: 0, scale: 0.9 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      style={{
-                        position: 'absolute',
-                        left: '50%',
-                        top: '50%',
-                        transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
-                      }}
-                      whileHover={{ scale: 1.2, zIndex: 10 }}
-                      className="relative"
+                      transition={{ duration: 0.5, delay: idx * 0.06 }}
                     >
-                      <div
-                        className={`w-20 h-20 ${currency.color} rounded-full flex items-center justify-center shadow-xl border-4 border-white`}
-                      >
-                        <span className="text-white font-bold text-sm">
-                          {currency.code}
-                        </span>
-                      </div>
-
-                      <motion.div
-                        initial={{ pathLength: 0, opacity: 0 }}
-                        whileInView={{ pathLength: 1, opacity: 0.3 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, delay: index * 0.1 + 0.5 }}
-                        className="absolute top-1/2 left-1/2 pointer-events-none"
-                        style={{
-                          width: Math.abs(x) + 50,
-                          height: Math.abs(y) + 50,
-                        }}
-                      >
-                        <svg
-                          width="100%"
-                          height="100%"
-                          style={{
-                            position: 'absolute',
-                            top: 0,
-                            left: 0,
-                            transform: `translate(-${x > 0 ? 0 : 100}%, -${
-                              y > 0 ? 0 : 100
-                            }%)`,
-                          }}
-                        >
-                          <motion.line
-                            x1={x > 0 ? 0 : '100%'}
-                            y1={y > 0 ? 0 : '100%'}
-                            x2={x > 0 ? '100%' : 0}
-                            y2={y > 0 ? '100%' : 0}
-                            stroke="#10B981"
-                            strokeWidth="2"
-                            strokeDasharray="5,5"
-                            animate={{
-                              strokeDashoffset: [0, -10],
-                            }}
-                            transition={{
-                              duration: 2,
-                              repeat: Infinity,
-                              ease: 'linear',
-                            }}
-                          />
-                        </svg>
-                      </motion.div>
+                     <Image
+                        src={chip.img}
+                        alt={`${chip.code} chip`}
+                        width={112}
+                        height={38}
+                         className="translate-x-2 -translate-y-1 select-none drop-shadow-sm"
+                      />
                     </motion.div>
                   );
                 })}
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10"
-              >
-                <div className="w-32 h-32 bg-emerald-500 rounded-full flex items-center justify-center shadow-2xl border-8 border-white">
-                  <div className="text-center">
-                    <div className="text-white font-bold text-2xl">D</div>
-                    <div className="text-white text-xs font-semibold">DollarPe</div>
-                  </div>
-                </div>
-
-                <motion.div
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [0.5, 0, 0.5],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: 'easeInOut',
-                  }}
-                  className="absolute inset-0 bg-emerald-400 rounded-full"
-                />
-              </motion.div>
-            </div>
-          </motion.div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>
