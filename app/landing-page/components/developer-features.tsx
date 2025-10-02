@@ -141,10 +141,10 @@ export function DeveloperFeatures() {
             </span>
             For Everyone
           </div>
-          <h2 className="max-w-[860px] text-center text-[48px] leading-[1.16] font-bold text-black">
+          <h2 className="max-w-[860px] text-center text-[32px] sm:text-[40px] lg:text-[48px] leading-[1.16] font-bold text-black">
             Built for Everyone.
           </h2>
-          <p className="max-w-[860px] px-20 text-center text-[18px] leading-[1.6] text-[#5D5D5D]/80">
+          <p className="max-w-[860px] px-4 sm:px-10 lg:px-20 text-center text-[16px] sm:text-[18px] leading-[1.6] text-[#5D5D5D]/80">
             Whether you're a start-up or a large financial institution,
             <br />
             our system is designed only for your success.
@@ -161,30 +161,36 @@ export function DeveloperFeatures() {
           {/* Card 1 */}
           <motion.div variants={item} className="p-3">
             <Card
-              className="flex h-[326px] flex-col md:flex-row items-center justify-between rounded-2xl border-0 shadow-[0_6px_24px_rgba(0,0,0,0.06)]"
+              className="flex h-auto sm:h-[326px] flex-col md:flex-row items-center justify-between rounded-2xl border-0 shadow-[0_6px_24px_rgba(0,0,0,0.06)]"
               style={{
                 background:
                   'linear-gradient(199.26deg, rgba(217, 255, 237, 0.3) 38.67%, rgba(210, 225, 255, 0.3) 109.06%)',
               }}
             >
-              <CardContent className="flex w-full flex-1 items-center gap-6 p-8">
-                <div className="flex-1">
-                  <h3 className="mb-3 max-w-[278px] text-[28px] leading-[1.2] font-semibold tracking-[-0.02em] text-black">
+              <CardContent className="flex w-full flex-1 flex-col md:flex-row items-center gap-4 md:gap-6 p-6 md:p-8">
+                <div className="flex-1 text-center md:text-left">
+                  <h3 className="mb-3 text-[24px] sm:text-[28px] leading-[1.2] font-semibold tracking-[-0.02em] text-black">
                     No Monthly
                     <br />
                     Commitments
                   </h3>
-                  <p className="max-w-[358px] text-[16px] leading-[1.5] text-black/80">
+                  <p className="text-[14px] sm:text-[16px] leading-[1.5] text-black/80">
                     Simply start building without worrying about any fixed monthly
                     commitments, ever.
                   </p>
                 </div>
                 <motion.div
-                  className="flex h-[189px] w-[206px] shrink-0 items-center justify-center rounded-2xl bg-transparent"
+                  className="flex h-[120px] w-[140px] sm:h-[150px] sm:w-[170px] md:h-[189px] md:w-[206px] shrink-0 items-center justify-center rounded-2xl bg-transparent"
                   whileHover={{ y: -4, scale: 1.02 }}
                   transition={{ type: 'spring', stiffness: 220, damping: 18 }}
                 >
-                  <Image src="/developer/calendar.png" alt="No Monthly Commitments" width={206} height={189} />
+                  <Image 
+                    src="/developer/calendar.png" 
+                    alt="No Monthly Commitments" 
+                    width={206} 
+                    height={189}
+                    className="w-full h-full object-contain"
+                  />
                 </motion.div>
               </CardContent>
             </Card>
@@ -193,30 +199,36 @@ export function DeveloperFeatures() {
           {/* Card 2 */}
           <motion.div variants={item} className="p-3">
             <Card
-              className="flex h-[326px] flex-col md:flex-row items-center justify-between rounded-2xl border-0 shadow-[0_6px_24px_rgba(0,0,0,0.06)]"
+              className="flex h-auto sm:h-[326px] flex-col md:flex-row items-center justify-between rounded-2xl border-0 shadow-[0_6px_24px_rgba(0,0,0,0.06)]"
               style={{
                 background:
                   'linear-gradient(199.26deg, rgba(217, 255, 237, 0.3) 38.67%, rgba(210, 225, 255, 0.3) 109.06%)',
               }}
             >
-              <CardContent className="flex w-full flex-1 items-center gap-6 p-8">
-                <div className="flex-1">
-                  <h3 className="mb-3 max-w-[278px] text-[28px] leading-[1.2] font-semibold tracking-[-0.02em] text-black">
+              <CardContent className="flex w-full flex-1 flex-col md:flex-row items-center gap-4 md:gap-6 p-6 md:p-8">
+                <div className="flex-1 text-center md:text-left">
+                  <h3 className="mb-3 text-[24px] sm:text-[28px] leading-[1.2] font-semibold tracking-[-0.02em] text-black">
                     Pay As
                     <br />
                     You Scale
                   </h3>
-                  <p className="max-w-[358px] text-[16px] leading-[1.5] text-black/80">
+                  <p className="text-[14px] sm:text-[16px] leading-[1.5] text-black/80">
                     Enjoy our affordable volume-based fee model, inherently designed to
                     help you scale.
                   </p>
                 </div>
                 <motion.div
-                  className="flex h-[189px] w-[206px] shrink-0 items-center justify-center rounded-2xl bg-transparent"
+                  className="flex h-[120px] w-[140px] sm:h-[150px] sm:w-[170px] md:h-[189px] md:w-[206px] shrink-0 items-center justify-center rounded-2xl bg-transparent"
                   whileHover={{ y: -4, scale: 1.02 }}
                   transition={{ type: 'spring', stiffness: 220, damping: 18 }}
                 >
-                  <Image src="/developer/scale.png" alt="Pay As You Scale" width={206} height={189} />
+                  <Image 
+                    src="/developer/scale.png" 
+                    alt="Pay As You Scale" 
+                    width={206} 
+                    height={189}
+                    className="w-full h-full object-contain"
+                  />
                 </motion.div>
               </CardContent>
             </Card>
