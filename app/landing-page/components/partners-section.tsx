@@ -78,7 +78,7 @@ export function PartnersSection() {
         </motion.div>
       </div>
 
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -88,7 +88,7 @@ export function PartnersSection() {
         <div className="inline-flex items-center gap-3 bg-emerald-50 border border-emerald-200 rounded-full px-6 py-3 text-sm text-emerald-700">
           <span className="font-semibold">Integrated with 15+ blockchain networks</span>
         </div>
-      </motion.div>
+      </motion.div> */}
     </section>
   );
 }
