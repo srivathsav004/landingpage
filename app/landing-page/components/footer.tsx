@@ -2,204 +2,153 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { Github, Linkedin, Twitter, MessageCircle } from 'lucide-react';
+import Image from 'next/image';
 
 export function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-300 py-16">
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-4 gap-12 mb-12">
+    <footer className="relative w-full">
+      {/* Main Footer Container */}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="mx-auto max-w-[1402px] bg-[#F2F2F24D] rounded-[32px] px-6 lg:px-12 py-8 lg:py-12"
+      >
+        {/* Main Content Container */}
+        <div className="w-full flex flex-col lg:flex-row justify-between items-start gap-10 lg:gap-16">
+          
+          {/* Left Section - Logo, Social Icons, and Description */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="flex flex-col gap-6 flex-1 max-w-[874px]"
           >
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">D</span>
+            {/* Logo and Social Icons Row */}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              {/* Logo */}
+              <div className="w-[175px] h-[38px]">
+                <Image
+                  src="/footer/dollarpe-logo.png"
+                  alt="DollarPe Logo"
+                  width={175}
+                  height={38}
+                  className="object-contain"
+                />
               </div>
-              <span className="text-2xl font-bold text-white">DollarPe</span>
+
+              {/* Social Media Icons */}
+<motion.div
+  initial={{ opacity: 0, scale: 0.8 }}
+  whileInView={{ opacity: 1, scale: 1 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6, delay: 0.2 }}
+  className="flex gap-3"
+>
+  {[
+    { href: "https://linkedin.com", src: "/footer/linkedin-icon.png", alt: "LinkedIn" },
+    { href: "https://twitter.com", src: "/footer/twitter-icon.png", alt: "Twitter" },
+    { href: "https://github.com", src: "/footer/github-icon.png", alt: "GitHub" },
+    { href: "https://hashnode.com", src: "/footer/hashnode-icon.png", alt: "Hashnode" },
+  ].map((icon, i) => (
+    <Link
+      key={i}
+      href={icon.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="w-11 h-11 flex items-center justify-center rounded-full transition-all duration-300 hover:scale-110 hover:shadow-md"
+    >
+      <Image
+        src={icon.src}
+        alt={icon.alt}
+        width={44}  // match your provided icon size (circle already included in asset)
+        height={44}
+        className="object-contain"
+      />
+    </Link>
+  ))}
+</motion.div>
+
             </div>
-            <p className="text-gray-400 mb-6 leading-relaxed">
-              Simplifying crypto and fiat infrastructure for next-generation businesses
-              across India and Southeast Asia.
-            </p>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
-              <span className="text-sm text-emerald-400 font-medium">
-                All Systems Operational
-              </span>
+
+            {/* Description Text */}
+            <div className="w-full">
+              <p className="text-[#5D5D5D] text-sm lg:text-base font-normal leading-[160%] text-justify">
+                DollarPe Technologies Private Limited and its subsidiary DollarPe LLC (collectively "DollarPe"), is a financial technology that offers its infrastructure solutions in partnership with regulated financial institutions in each jurisdictions. DollarPe does not endorse or make any recommendations for the purchase or sale of virtual digital assets. Our products are offered in limited jurisdictions so please contact our partnership team to know more about our offerings in each jurisdictions.
+              </p>
             </div>
           </motion.div>
 
+          {/* Right Section - Company and Developers */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="flex gap-12 lg:gap-16 flex-wrap"
           >
-            <h4 className="text-white font-semibold text-lg mb-4">Company</h4>
-            <ul className="space-y-3">
-              <li>
-                <Link
-                  href="/about"
-                  className="hover:text-emerald-400 transition-colors"
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/careers"
-                  className="hover:text-emerald-400 transition-colors"
-                >
-                  Careers
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/blog"
-                  className="hover:text-emerald-400 transition-colors"
-                >
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="hover:text-emerald-400 transition-colors"
-                >
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <h4 className="text-white font-semibold text-lg mb-4">Developers</h4>
-            <ul className="space-y-3">
-              <li>
-                <Link
-                  href="/docs"
-                  className="hover:text-emerald-400 transition-colors"
-                >
-                  Documentation
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/api"
-                  className="hover:text-emerald-400 transition-colors"
-                >
-                  API Reference
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/sdks"
-                  className="hover:text-emerald-400 transition-colors"
-                >
-                  SDKs
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/status"
-                  className="hover:text-emerald-400 transition-colors"
-                >
-                  API Status
-                </Link>
-              </li>
-            </ul>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <h4 className="text-white font-semibold text-lg mb-4">Connect</h4>
-            <div className="flex gap-4 mb-6">
-              <Link
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-emerald-500 transition-colors"
-              >
-                <Twitter className="w-5 h-5" />
-              </Link>
-              <Link
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-emerald-500 transition-colors"
-              >
-                <Linkedin className="w-5 h-5" />
-              </Link>
-              <Link
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-emerald-500 transition-colors"
-              >
-                <Github className="w-5 h-5" />
-              </Link>
-              <Link
-                href="https://discord.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-emerald-500 transition-colors"
-              >
-                <MessageCircle className="w-5 h-5" />
-              </Link>
+            {/* Company Section */}
+            <div className="flex flex-col gap-5">
+              <h4 className="text-black text-lg font-semibold leading-[145%]">
+                Company
+              </h4>
+              <div className="flex flex-col gap-3">
+                <Link href="/about" className="text-[#5D5D5D] text-base hover:text-black transition-colors">About Us</Link>
+                <Link href="/use-cases" className="text-[#5D5D5D] text-base hover:text-black transition-colors">Use Cases</Link>
+                <Link href="/terms" className="text-[#5D5D5D] text-base hover:text-black transition-colors">Terms of Use</Link>
+                <Link href="/privacy" className="text-[#5D5D5D] text-base hover:text-black transition-colors">Privacy Policy</Link>
+              </div>
             </div>
-            <p className="text-sm text-gray-400">
-              Join our community for updates, support, and discussions.
-            </p>
+
+            {/* Developers Section */}
+            <div className="flex flex-col gap-5">
+              <h4 className="text-black text-lg font-semibold leading-[145%]">
+                Developers
+              </h4>
+              <div className="flex flex-col gap-3">
+                <Link href="/docs" className="text-[#5D5D5D] text-base hover:text-black transition-colors">API Documentation</Link>
+                <Link href="/support" className="text-[#5D5D5D] text-base hover:text-black transition-colors">Technical Support</Link>
+              </div>
+            </div>
           </motion.div>
         </div>
 
+        {/* Bottom Section */}
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="border-t border-gray-800 pt-8"
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="flex flex-col lg:flex-row justify-between items-center gap-6 mt-10"
         >
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-gray-500">
-              © {new Date().getFullYear()} DollarPe. All rights reserved.
-            </p>
-            <div className="flex gap-6 text-sm">
-              <Link
-                href="/privacy"
-                className="text-gray-500 hover:text-emerald-400 transition-colors"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                href="/terms"
-                className="text-gray-500 hover:text-emerald-400 transition-colors"
-              >
-                Terms of Service
-              </Link>
-              <Link
-                href="/cookies"
-                className="text-gray-500 hover:text-emerald-400 transition-colors"
-              >
-                Cookie Policy
-              </Link>
-            </div>
-          </div>
+          {/* Copyright */}
+          <p className="text-black text-sm lg:text-base opacity-80 text-center lg:text-left">
+            © 2025 DollarPe. All Rights Reserved.
+          </p>
+
+          {/* Status Indicator */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className="flex items-center gap-3 bg-white rounded-full border border-[#E8E8E8] px-5 py-2 shadow-sm"
+          >
+            <Image
+              src="/footer/status-icon.png"
+              alt="Status"
+              width={20}
+              height={20}
+              className="object-contain"
+            />
+            <span className="text-black text-sm lg:text-base font-medium">
+              All System Operational
+            </span>
+          </motion.div>
         </motion.div>
-      </div>
+      </motion.div>
     </footer>
   );
 }
