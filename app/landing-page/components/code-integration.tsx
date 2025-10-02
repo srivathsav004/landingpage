@@ -9,7 +9,9 @@ import { Copy, Check, Sparkles, ChevronDown } from 'lucide-react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneLight } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
-const codeExamples = {
+type CodeExampleKey = 'kycc' | 'bankAccounts' | 'cryptoToFiat' | 'blockchainWallets' | 'fiatToCrypto';
+
+const codeExamples: Record<CodeExampleKey, string> = {
   kycc: `// Imports
 import dollarpe, { Schema } from 'dollarpe'
 
@@ -66,7 +68,7 @@ const tabs = [
 ];
 
 export function CodeIntegration() {
-  const [activeTab, setActiveTab] = useState('kycc');
+  const [activeTab, setActiveTab] = useState<CodeExampleKey>('kycc');
   const [copied, setCopied] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
@@ -79,6 +81,10 @@ export function CodeIntegration() {
     navigator.clipboard.writeText(codeExamples[activeTab]);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleTabChange = (value: string) => {
+    setActiveTab(value as CodeExampleKey);
   };
 
   const activeTabData = tabs.find(tab => tab.value === activeTab);
@@ -128,7 +134,7 @@ export function CodeIntegration() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="w-full max-w-[1046px] mx-auto"
         >
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+          <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
             <div className="relative mx-auto overflow-hidden border-2 border-[#E8E8E8] rounded-xl bg-white shadow-sm">
               {/* Desktop Tabs */}
               <div className="hidden md:flex items-center justify-between border-b border-[#E8E8E8] bg-[#F2F2F2] h-[51px]">
@@ -136,7 +142,7 @@ export function CodeIntegration() {
                   {tabs.map((tab) => (
                     <button
                       key={tab.value}
-                      onClick={() => setActiveTab(tab.value)}
+                      onClick={() => handleTabChange(tab.value)}
                       className={`flex items-center justify-center gap-2 px-4 h-[51px] min-w-[111px] text-xs transition-all whitespace-nowrap
                         ${activeTab === tab.value
                           ? 'bg-[#24CB71] text-white font-bold'
@@ -205,7 +211,7 @@ export function CodeIntegration() {
                       <button
                         key={tab.value}
                         onClick={() => {
-                          setActiveTab(tab.value);
+                          handleTabChange(tab.value);
                           setMobileMenuOpen(false);
                         }}
                         className={`flex items-center gap-3 w-full px-4 py-3 text-sm transition-colors
