@@ -138,7 +138,7 @@ export function ApiCoverage() {
       initial={{ scale: 0.8, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ delay: 0.6, duration: 0.6 }}
-      className="absolute top-[80px] transform -translate-y-[50%]"
+      className="absolute top-[95px] transform -translate-y-[50%]"
       style={{
         right: '5px',
         transform: 'translateX(-40px) translateY(-50%)',
