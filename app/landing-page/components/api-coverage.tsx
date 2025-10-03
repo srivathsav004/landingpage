@@ -7,52 +7,53 @@ import Image from 'next/image';
 type Chip = {
   code: string;
   img: string;
-  dot: { top: string; left: string }; // dot on globe
-  labelPos: string; // where chip text goes
+  dot: { top: string; left: string }; // dot on globe (in px)
+  labelOffset: { x: string; y: string }; // offset from dot for label
 };
 
+// Globe is 380px wide × 380px tall
 const chips: Chip[] = [
   {
     code: 'INR',
     img: '/api-coverage/globe/chip-inr.png',
-    dot: { top: '8%', left: '97%' },
-    labelPos: 'left-full ml-3 -translate-y-1/2',
+    dot: { top: '-4px', left: '185px' }, // top-center
+    labelOffset: { x: '-50%', y: '-150%' }, // above, centered
   },
   {
     code: 'PHP',
     img: '/api-coverage/globe/chip-php.png',
-    dot: { top: '20%', left: '97%' },
-    labelPos: 'left-full ml-3 -translate-y-1/2',
+    dot: { top: '50px', left: '317px' },
+    labelOffset: { x: '100%', y: '-50%' }, // right, vertically centered
   },
   {
     code: 'VND',
     img: '/api-coverage/globe/chip-vnd.png',
-    dot: { top: '38%', left: '97%' },
-    labelPos: 'left-full ml-3 -translate-y-1/2',
+    dot: { top: '115px', left: '360px' },
+    labelOffset: { x: '100%', y: '-50%' }, // right, vertically centered
   },
   {
     code: 'MYR',
     img: '/api-coverage/globe/chip-myr.png',
-    dot: { top: '55%', left: '97%' },
-    labelPos: 'left-full ml-3 -translate-y-1/2',
+    dot: { top: '184px', left: '372px' }, // right-center
+    labelOffset: { x: '100%', y: '-50%' }, // right, vertically centered
   },
   {
     code: 'THB',
     img: '/api-coverage/globe/chip-thb.png',
-    dot: { top: '72%', left: '97%' },
-    labelPos: 'left-full ml-3 -translate-y-1/2',
+    dot: { top: '260px', left: '356px' },
+    labelOffset: { x: '100%', y: '-50%' }, // right, vertically centered
   },
   {
     code: 'IDR',
     img: '/api-coverage/globe/chip-idr.png',
-    dot: { top: '85%', left: '97%' },
-    labelPos: 'left-full ml-3 -translate-y-1/2',
+    dot: { top: '320px', left: '315px' },
+    labelOffset: { x: '100%', y: '-50%' }, // right, vertically centered
   },
   {
     code: 'SGD',
     img: '/api-coverage/globe/chip-sgd.png',
-    dot: { top: '55%', left: '3%' },
-    labelPos: 'right-full mr-3 -translate-y-1/2',
+    dot: { top: '370px', left: '185px' }, // bottom-center
+    labelOffset: { x: '-50%', y: '150%' }, // below, centered
   },
 ];
 
@@ -110,84 +111,83 @@ export function ApiCoverage() {
           </div>
 
           {/* MIDDLE: Tokens + DollarPe with perfect dotted connectors */}
-<div className="relative flex flex-col items-center justify-center h-[300px]">
-  {/* Container for precise positioning */}
-  <div className="relative w-full max-w-[320px] h-[240px]">
-    {/* USDT Icon - raw PNG, positioned top-left */}
-    <motion.div
-      initial={{ opacity: 0, y: -30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.2, duration: 0.6 }}
-      className="absolute left-0 top-[20px]"
-    >
-      <Image src="/api-coverage/middle/tether.png" alt="Tether USDT" width={80} height={80} />
-    </motion.div>
+          <div className="relative flex flex-col items-center justify-center h-[300px]">
+            {/* Container for precise positioning */}
+            <div className="relative w-full max-w-[320px] h-[240px]">
+              {/* USDT Icon - raw PNG, positioned top-left */}
+              <motion.div
+                initial={{ opacity: 0, y: -30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
+                className="absolute left-0 top-[20px]"
+              >
+                <Image src="/api-coverage/middle/tether.png" alt="Tether USDT" width={80} height={80} />
+              </motion.div>
 
-    {/* USDC Icon - raw PNG, positioned bottom-left */}
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.4, duration: 0.6 }}
-      className="absolute left-0 bottom-[20px]"
-    >
-      <Image src="/api-coverage/middle/usdc.png" alt="USD Coin" width={80} height={80} />
-    </motion.div>
+              {/* USDC Icon - raw PNG, positioned bottom-left */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.6 }}
+                className="absolute left-0 bottom-[20px]"
+              >
+                <Image src="/api-coverage/middle/usdc.png" alt="USD Coin" width={80} height={80} />
+              </motion.div>
 
-    {/* DollarPe Pill - raw PNG, scaled down and positioned to FIT connector end AND VERTICALLY CENTERED */}
-    <motion.div
-      initial={{ scale: 0.8, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      transition={{ delay: 0.6, duration: 0.6 }}
-      className="absolute top-[95px] transform -translate-y-[50%]"
-      style={{
-        right: '5px',
-        transform: 'translateX(-40px) translateY(-50%)',
-      }}
-    >
-      <Image
-        src="/api-coverage/middle/dollarpe-pill.png"
-        alt="DollarPe"
-        width={120}
-        height={30}
-        priority
-      />
-    </motion.div>
+              {/* DollarPe Pill - raw PNG, scaled down and positioned to FIT connector end AND VERTICALLY CENTERED */}
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.6, duration: 0.6 }}
+                className="absolute top-[95px] transform -translate-y-[50%]"
+                style={{
+                  right: '5px',
+                  transform: 'translateX(-40px) translateY(-50%)',
+                }}
+              >
+                <Image
+                  src="/api-coverage/middle/dollarpe-pill.png"
+                  alt="DollarPe"
+                  width={120}
+                  height={30}
+                  priority
+                />
+              </motion.div>
 
-    {/* Connectors - using PNG images, repositioned to START from token's RIGHT-CENTER */}
-    {/* USDT to DollarPe Connector - using connector-top.png */}
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 0.8, duration: 0.6 }}
-      className="absolute left-[80px] top-[60px] z-10"
-    >
-      <Image 
-        src="/api-coverage/middle/connector-top.png" 
-        alt="Connector from USDT to DollarPe" 
-        width={160} 
-        height={50}
-        className="object-contain"
-      />
-    </motion.div>
+              {/* Connectors - using PNG images, repositioned to START from token's RIGHT-CENTER */}
+              {/* USDT to DollarPe Connector - using connector-top.png */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.8, duration: 0.6 }}
+                className="absolute left-[80px] top-[60px] z-10"
+              >
+                <Image 
+                  src="/api-coverage/middle/connector-top.png" 
+                  alt="Connector from USDT to DollarPe" 
+                  width={160} 
+                  height={50}
+                  className="object-contain"
+                />
+              </motion.div>
 
-    {/* USDC to DollarPe Connector - using connector-bottom.png */}
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 1.0, duration: 0.6 }}
-      className="absolute left-[80px] bottom-[60px] z-10"
-    >
-      <Image 
-        src="/api-coverage/middle/connector-bottom.png" 
-        alt="Connector from USDC to DollarPe" 
-        width={160} 
-        height={50}
-        className="object-contain"
-      />
-    </motion.div>
-  </div>
-</div>
-
+              {/* USDC to DollarPe Connector - using connector-bottom.png */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.0, duration: 0.6 }}
+                className="absolute left-[80px] bottom-[60px] z-10"
+              >
+                <Image 
+                  src="/api-coverage/middle/connector-bottom.png" 
+                  alt="Connector from USDC to DollarPe" 
+                  width={160} 
+                  height={50}
+                  className="object-contain"
+                />
+              </motion.div>
+            </div>
+          </div>
 
           {/* RIGHT: Globe + Chips */}
           <div className="relative flex justify-center">
@@ -201,9 +201,9 @@ export function ApiCoverage() {
                   animate={{ scale: [1, 1.05, 1] }}
                   transition={{ duration: 3, repeat: Infinity }}
                 >
-                  <Image src="/api-coverage/globe/globe-diamond.png" alt="Diamond" width={120} height={120} />
+                  <Image src="/api-coverage/globe/globe-diamond.png" alt="Diamond" width={220} height={120} />
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <Image src="/api-coverage/globe/dollarpe-mark.png" alt="DollarPe" width={40} height={40} />
+                    <Image src="/api-coverage/globe/dollarpe-mark.png" alt="DollarPe" width={70} height={40} />
                   </div>
                 </motion.div>
               </div>
@@ -222,8 +222,20 @@ export function ApiCoverage() {
                   {/* Green dot */}
                   <div className="w-3 h-3 rounded-full bg-emerald-500 shadow-md" />
                   {/* Label */}
-                  <div className={`absolute ${chip.labelPos}`}>
-                    <Image src={chip.img} alt={chip.code} width={90} height={32} className="drop-shadow" />
+                  <div
+                    className="absolute"
+                    style={{
+                      transform: `translate(${chip.labelOffset.x}, ${chip.labelOffset.y})`,
+                      transformOrigin: 'center',
+                    }}
+                  >
+                    <Image
+                      src={chip.img}
+                      alt={chip.code}
+                      width={120} // Increased for visibility
+                      height={40} // Increased for visibility
+                      className="drop-shadow"
+                    />
                   </div>
                 </motion.div>
               ))}
