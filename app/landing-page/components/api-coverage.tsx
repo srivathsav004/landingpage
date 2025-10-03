@@ -203,7 +203,7 @@ export function ApiCoverage() {
                 >
                   <Image src="/api-coverage/globe/globe-diamond.png" alt="Diamond" width={220} height={120} />
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <Image src="/api-coverage/globe/dollarpe-mark.png" alt="DollarPe" width={70} height={40} />
+                    <Image src="/api-coverage/globe/dollarpe-mark.png" alt="DollarPe" width={65} height={40} />
                   </div>
                 </motion.div>
               </div>
