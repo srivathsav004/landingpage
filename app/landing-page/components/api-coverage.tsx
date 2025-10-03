@@ -235,6 +235,10 @@ export function ApiCoverage() {
                       width={120} // Increased for visibility
                       height={40} // Increased for visibility
                       className="drop-shadow"
+                      style={{
+                        maxWidth: '500%', // 🔥 KEY FIX — makes image huge like in DevTools
+                        maxHeight: 'none', // Allow vertical scaling
+                      }}
                     />
                   </div>
                 </motion.div>
