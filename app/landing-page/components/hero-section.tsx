@@ -196,7 +196,7 @@ export function HeroSection() {
                 <div className="w-full rounded-lg sm:rounded-xl md:rounded-2xl border border-gray-200 bg-white shadow-2xl overflow-hidden">
                   <div className="relative w-full aspect-[1067.387/823.038]">
                     <Image 
-                      src="/dashboard-preview.png" 
+                      src="/Dashboard Screen.svg" 
                       alt="Dashboard Preview" 
                       fill 
                       className="object-contain"
