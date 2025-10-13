@@ -315,85 +315,104 @@ export function ApiCoverage() {
               {chips.map((chip, idx) => {
                 const topPercent = (parseFloat(chip.dot.top) / 380) * 100;
                 const leftPercent = (parseFloat(chip.dot.left) / 380) * 100;
-                
-                // Calculate label position relative to dot
-                const getLabelStyle = () => {
-                  const baseStyle: React.CSSProperties = {
-                    position: 'absolute',
-                    width: 'clamp(70px, 8.5vw, 100px)',
-                    height: 'auto',
-                    whiteSpace: 'nowrap',
-                  };
-                  
+
+                // Define fixed pixel offsets from dot center (for 380px globe)
+                const getLabelOffset = () => {
                   switch (chip.labelPosition) {
                     case 'top':
-                      return { ...baseStyle, bottom: '100%', left: '50%', transform: 'translate(-50%, -8px)' };
+                      return { top: '-50px', left: '50%', transform: 'translateX(-50%)' };
                     case 'bottom':
-                      return { ...baseStyle, top: '100%', left: '50%', transform: 'translate(-50%, 8px)' };
+                      return { top: '25px', left: '50%', transform: 'translateX(-50%)' };
                     case 'right':
-                      return { ...baseStyle, left: '100%', top: '50%', transform: 'translate(10px, -50%)' };
+                      return { left: '25px', top: '50%', transform: 'translateY(-50%)' };
                     case 'left':
-                      return { ...baseStyle, right: '100%', top: '50%', transform: 'translate(-10px, -50%)' };
+                      return { right: '25px', top: '50%', transform: 'translateY(-50%)' };
                     default:
-                      return baseStyle;
+                      return { top: '0', left: '0' };
                   }
                 };
-                
+
+                const labelStyle = getLabelOffset();
+
                 return (
                   <motion.div
                     key={chip.code}
                     className="absolute z-30"
-                    style={{ 
-                      top: `${topPercent}%`, 
+                    style={{
+                      top: `${topPercent}%`,
                       left: `${leftPercent}%`,
+                      transform: 'translate(-50%, -50%)', // Center the dot
                     }}
                     initial={{ opacity: 0, scale: 0 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ 
-                      delay: 0.9 + idx * 0.08, 
+                    transition={{
+                      delay: 0.9 + idx * 0.08,
                       duration: 0.5,
                       type: 'spring',
                       stiffness: 250,
-                      damping: 20
+                      damping: 20,
                     }}
                   >
                     {/* Green dot with pulse animation */}
-                    <motion.div 
-                      className="rounded-full bg-emerald-500 shadow-lg relative z-10" 
-                      style={{ 
-                        width: 'clamp(10px, 1.2vw, 13px)', 
-                        height: 'clamp(10px, 1.2vw, 13px)' 
+                    <motion.div
+                      className="rounded-full bg-emerald-500 shadow-lg"
+                      style={{
+                        width: 'clamp(10px, 1.2vw, 13px)',
+                        height: 'clamp(10px, 1.2vw, 13px)',
                       }}
-                      animate={{ 
+                      animate={{
                         boxShadow: [
                           '0 0 0 0 rgba(16, 185, 129, 0.4)',
                           '0 0 0 8px rgba(16, 185, 129, 0)',
-                          '0 0 0 0 rgba(16, 185, 129, 0)'
-                        ]
+                          '0 0 0 0 rgba(16, 185, 129, 0)',
+                        ],
                       }}
-                      transition={{ 
-                        duration: 2, 
+                      transition={{
+                        duration: 2,
                         repeat: Infinity,
-                        delay: idx * 0.2
+                        delay: idx * 0.2,
                       }}
-                      whileHover={{ scale: 1.4 }}
                     />
-                    
+
                     {/* Currency chip label */}
                     <motion.div
-                      style={getLabelStyle()}
+                      style={{
+                        position: 'absolute',
+                        ...labelStyle,
+                        width: 'clamp(70px, 8.5vw, 100px)',
+                        height: 'auto',
+                        whiteSpace: 'nowrap',
+                      }}
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 1.1 + idx * 0.08, duration: 0.4 }}
-                      whileHover={{ scale: 1.08, y: -2 }}
                     >
-                      <Image
-                        src={chip.img}
-                        alt={chip.code}
-                        width={100}
-                        height={32}
-                        className="drop-shadow-lg object-contain"
-                      />
+                      <motion.div
+                        whileHover={{
+                          y: -3,
+                          scale: 1.05,
+                          boxShadow: 'none',
+                        }}
+                        whileTap={{ scale: 0.98 }}
+                        transition={{
+                          type: 'spring',
+                          stiffness: 400,
+                          damping: 25,
+                        }}
+                        style={{
+                          display: 'inline-block',
+                          background: 'transparent',
+                          borderRadius: '0.5rem',
+                        }}
+                      >
+                        <Image
+                          src={chip.img}
+                          alt={chip.code}
+                          width={100}
+                          height={32}
+                          className="drop-shadow-lg object-contain"
+                        />
+                      </motion.div>
                     </motion.div>
                   </motion.div>
                 );
