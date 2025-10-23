@@ -76,7 +76,7 @@ export function ApiCoverage() {
         style={{
           backgroundImage: 'url(/api-coverage/bg/dots-pattern.png)',
           backgroundRepeat: 'repeat',
-          opacity: 0.25,
+          opacity: 0.5,
           borderRadius: '1.5rem',
         }}
       />
@@ -84,25 +84,36 @@ export function ApiCoverage() {
       <div className="relative mx-auto w-full" style={{ maxWidth: '1400px' }}>
         {/* Grid with Figma ratios: Equal spacing for all 3 sections */}
         <div 
-          className="grid lg:grid-cols-3 items-center" 
-          style={{ gap: 'clamp(3rem, 5vw, 6rem)' }}
+          className="grid grid-cols-1 lg:grid-cols-3 items-center" 
+          style={{ gap: 'clamp(2rem, 5vw, 6rem)' }}
         >
           {/* LEFT: Heading + Buttons */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(1.5rem, 2.5vw, 2rem)' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(1.5rem, 2.5vw, 2rem)', minWidth: '0' }}>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
+              style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem', minWidth: '0' }}
             >
               <h2 
-                className="font-bold text-gray-900 leading-tight"
-                style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}
+                className="font-bold text-gray-900"
+                style={{ 
+                  fontSize: 'clamp(1.1rem, 2.5vw, 2.75rem)',
+                  lineHeight: '1.2',
+                  whiteSpace: 'nowrap',
+                  overflow: 'visible',
+                }}
               >
                 Single API.
               </h2>
               <h2 
-                className="font-bold text-gray-900 leading-tight"
-                style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', marginTop: '0.4rem' }}
+                className="font-bold text-gray-900"
+                style={{ 
+                  fontSize: 'clamp(1.1rem, 2.5vw, 2.75rem)',
+                  lineHeight: '1.2',
+                  whiteSpace: 'nowrap',
+                  overflow: 'visible',
+                }}
               >
                 Entire South East Asia.
               </h2>
@@ -110,8 +121,8 @@ export function ApiCoverage() {
             <motion.div 
               className="inline-flex bg-white rounded-xl shadow-md"
               style={{ 
-                padding: 'clamp(0.4rem, 0.8vw, 0.6rem)',
-                gap: 'clamp(0.6rem, 1.5vw, 0.9rem)',
+                padding: 'clamp(0.3rem, 0.6vw, 0.5rem)',
+                gap: 'clamp(0.4rem, 0.8vw, 0.75rem)',
                 width: 'fit-content'
               }}
               initial={{ opacity: 0, y: 20 }}
@@ -120,10 +131,10 @@ export function ApiCoverage() {
             >
               <Button
                 size="lg"
-                className="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl whitespace-nowrap transition-all"
+                className="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl whitespace-nowrap transition-all"
                 style={{
-                  padding: 'clamp(0.7rem, 1.3vw, 1.3rem) clamp(1.4rem, 2.5vw, 1.8rem)',
-                  fontSize: 'clamp(0.85rem, 1.3vw, 0.95rem)',
+                  padding: 'clamp(0.5rem, 1vw, 0.875rem) clamp(1rem, 2vw, 1.5rem)',
+                  fontSize: 'clamp(0.75rem, 1vw, 0.9rem)',
                 }}
                 asChild
               >
@@ -132,10 +143,10 @@ export function ApiCoverage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="bg-white text-gray-900 font-semibold rounded-xl border-2 border-gray-200 hover:border-emerald-500 hover:bg-emerald-50 whitespace-nowrap transition-all"
+                className="bg-white text-gray-900 font-semibold rounded-lg border-2 border-gray-200 hover:border-emerald-500 hover:bg-emerald-50 whitespace-nowrap transition-all"
                 style={{
-                  padding: 'clamp(0.7rem, 1.3vw, 1.3rem) clamp(1.4rem, 2.5vw, 1.8rem)',
-                  fontSize: 'clamp(0.85rem, 1.3vw, 0.95rem)',
+                  padding: 'clamp(0.5rem, 1vw, 0.875rem) clamp(1rem, 2vw, 1.5rem)',
+                  fontSize: 'clamp(0.75rem, 1vw, 0.9rem)',
                 }}
                 asChild
               >
@@ -248,13 +259,14 @@ export function ApiCoverage() {
           </div>
 
           {/* RIGHT: Globe + Chips with extra padding for labels */}
-          <div className="relative flex justify-center lg:justify-start" style={{ paddingLeft: '0', position: 'relative' }}>
+          <div className="relative flex justify-center lg:justify-start" style={{ position: 'relative', overflow: 'visible' }}>
             <div 
               className="relative w-full" 
               style={{ 
-                maxWidth: 'clamp(280px, 32vw, 380px)', 
+                maxWidth: 'clamp(260px, 32vw, 380px)', 
                 aspectRatio: '1',
-                marginRight: 'clamp(3rem, 8vw, 8rem)', // Extra space for right-side labels
+                marginLeft: 'clamp(-3rem, -8vw, 0)',
+                marginRight: 'clamp(3rem, 8vw, 8rem)',
               }}
             >
               {/* Globe */}
@@ -324,9 +336,9 @@ export function ApiCoverage() {
                     case 'bottom':
                       return { top: '25px', left: '50%', transform: 'translateX(-50%)' };
                     case 'right':
-                      return { left: '25px', top: '50%', transform: 'translateY(-50%)' };
+                      return { left: 'clamp(20px, 6vw, 25px)', top: '50%', transform: 'translateY(-50%)' };
                     case 'left':
-                      return { right: '25px', top: '50%', transform: 'translateY(-50%)' };
+                      return { right: 'clamp(20px, 6vw, 25px)', top: '50%', transform: 'translateY(-50%)' };
                     default:
                       return { top: '0', left: '0' };
                   }
@@ -379,7 +391,7 @@ export function ApiCoverage() {
                       style={{
                         position: 'absolute',
                         ...labelStyle,
-                        width: 'clamp(70px, 8.5vw, 100px)',
+                        width: 'clamp(55px, 7vw, 100px)',
                         height: 'auto',
                         whiteSpace: 'nowrap',
                       }}
@@ -410,7 +422,7 @@ export function ApiCoverage() {
                           alt={chip.code}
                           width={100}
                           height={32}
-                          className="drop-shadow-lg object-contain"
+                          className="drop-shadow-lg object-contain w-full h-auto"
                         />
                       </motion.div>
                     </motion.div>

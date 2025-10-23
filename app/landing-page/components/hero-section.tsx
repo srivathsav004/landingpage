@@ -207,15 +207,15 @@ export function HeroSection() {
                   className="leading-tight font-bold text-gray-900 text-center px-2 text-[length:clamp(1.375rem,5vw,3.25rem)]"
                   style={{ maxWidth: '90vw' }}
                 >
-                  <span className="inline-block">Stablecoin Payment APIs for India{' '}</span>
-                  <Image
+                  <span className="inline-block">Stablecoin Payment APIs for Asia</span>
+                  {/* <Image
                     src="/flag.svg"
                     alt="India Flag"
                     width={28}
                     height={28}
                     className="inline-block ml-[0.2em] align-middle"
                     style={{ width: 'clamp(1.25rem, 4.5vw, 2rem)', height: 'auto' }}
-                  />
+                  /> */}
                 </motion.h1>
                 
                 <motion.p
