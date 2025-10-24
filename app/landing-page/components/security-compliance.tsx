@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Sparkles } from 'lucide-react';
+import Image from 'next/image';
 
 const securityFeatures = [
   'Multi-Factor Authentication',
@@ -28,7 +28,7 @@ export function SecurityCompliance() {
           className="w-full flex flex-col items-center gap-5 mb-12"
         >
           <div className="inline-flex items-center gap-2 rounded-2xl border border-emerald-400 bg-white px-4 h-10 text-sm text-emerald-700 shadow">
-            <Sparkles className="w-4 h-4" />
+            <Image src="/star.png" alt="star" width={16} height={16} className="w-4 h-4" />
             <span className="font-medium">Safety First</span>
           </div>
 

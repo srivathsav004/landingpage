@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Sparkles } from 'lucide-react';
+import Image from 'next/image';
 
 const partners = [
   { name: 'Tether', logo: 'tether.png' },
@@ -34,7 +34,7 @@ export function PartnersSection() {
           className="w-full flex flex-col items-center gap-4 sm:gap-5 mb-8 sm:mb-10"
         >
           <div className="inline-flex items-center gap-2 rounded-2xl border border-emerald-400 bg-white px-3 sm:px-4 h-8 sm:h-10 text-xs sm:text-sm text-emerald-700 shadow-[0_10px_18px_0_rgba(0,0,0,0.04),0_2px_6px_0_rgba(0,0,0,0.04),0_0_1px_0_rgba(0,0,0,0.04)]">
-            <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+            <Image src="/star.png" alt="star" width={16} height={16} className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             <span className="font-medium">Scalable Infra</span>
           </div>
 

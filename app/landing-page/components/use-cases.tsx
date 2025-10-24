@@ -66,6 +66,7 @@ export function UseCases() {
           <div
             className="inline-flex items-center gap-2 rounded-2xl border border-emerald-500 bg-white px-4 py-2 text-sm font-medium text-emerald-600 shadow-[0_10px_18px_0_rgba(0,0,0,0.04),0_2px_6px_0_rgba(0,0,0,0.04),0_0_1px_0_rgba(0,0,0,0.04)]"
           >
+            <Image src="/star.png" alt="star" width={14} height={14} className="h-3.5 w-3.5" />
             Use Cases
           </div>
           <h2 className="max-w-[860px] text-center text-[32px] sm:text-[40px] lg:text-[48px] leading-[1.16] font-bold text-black">

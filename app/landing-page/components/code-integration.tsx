@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Tabs, TabsContent } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
-import { Copy, Check, Sparkles, ChevronDown } from 'lucide-react';
+import { Copy, Check, ChevronDown } from 'lucide-react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneLight } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
@@ -105,15 +105,7 @@ export function CodeIntegration() {
           className="flex flex-col items-center gap-4 md:gap-6 mb-8 md:mb-12"
         >
           <div className="inline-flex items-center gap-2 rounded-2xl border border-emerald-500 bg-white px-3 md:px-4 py-1.5 md:py-2 text-xs md:text-sm font-medium text-emerald-600 shadow-sm">
-            <span
-              className="inline-flex h-5 w-5 md:h-6 md:w-6 items-center justify-center rounded-full"
-              style={{
-                background:
-                  'linear-gradient(199.26deg, rgba(217, 255, 237, 0.6) 38.67%, rgba(210, 225, 255, 0.6) 109.06%)',
-              }}
-            >
-              <Sparkles className="h-3 w-3 md:h-3.5 md:w-3.5 text-emerald-600" />
-            </span>
+            <Image src="/star.png" alt="star" width={14} height={14} className="h-3 w-3 md:h-3.5 md:w-3.5" />
             Easy Code
           </div>
           <h2 className="max-w-[860px] text-center text-[28px] md:text-[36px] lg:text-[44px] leading-[1.2] font-bold text-black px-4">

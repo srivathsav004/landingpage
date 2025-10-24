@@ -187,10 +187,10 @@ export function ApiCoverage() {
                   transition={{ delay: 0.5, duration: 0.6, type: 'spring', stiffness: 120 }}
                   className="absolute"
                   style={{ 
-                    right: '5%', 
+                    right: '4%', 
                     top: '41%', 
                     transform: 'translateY(-50%)',
-                    width: '40%',
+                    width: '42%',
                     height: 'auto',
                   }}
                 >
