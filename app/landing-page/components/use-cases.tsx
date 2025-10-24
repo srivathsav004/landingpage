@@ -68,12 +68,13 @@ export function UseCases() {
           >
             Use Cases
           </div>
-          <h2 className="max-w-[860px] text-center text-[48px] leading-[1.16] font-bold text-black">
+          <h2 className="max-w-[860px] text-center text-[32px] sm:text-[40px] lg:text-[48px] leading-[1.16] font-bold text-black">
             Empowering Next-Gen Businesses.
           </h2>
-          <p className="max-w-[860px] px-20 text-center text-[18px] leading-[1.6] text-[#5D5D5D]/80">
+          <p className="max-w-[860px] px-4 sm:px-10 lg:px-20 text-center text-[16px] sm:text-[18px] leading-[1.6] text-[#5D5D5D]/80">
             Scale your business with low cost & instant stablecoin rails.
-            <br />
+            <br className="hidden sm:block" />
+            <span className="sm:hidden"> </span>
             Build modern neobanks, payroll solutions and more.
           </p>
         </motion.div>
@@ -117,10 +118,10 @@ export function UseCases() {
 
                   </div>
                   <div>
-                    <h3 className="mb-2 text-[24px] leading-[1.1] font-bold tracking-[0] text-[#2F2F2F]">
+                    <h3 className="mb-2 text-[20px] sm:text-[24px] leading-[1.1] font-bold tracking-[0] text-[#2F2F2F]">
                       {useCase.title}
                     </h3>
-                    <p className="mx-auto max-w-[302px] text-[16px] leading-[1.5] text-black/80">
+                    <p className="mx-auto max-w-[302px] text-[14px] sm:text-[16px] leading-[1.5] text-black/80">
                       {useCase.description}
                     </p>
                   </div>

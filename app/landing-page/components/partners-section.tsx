@@ -38,12 +38,13 @@ export function PartnersSection() {
             <span className="font-medium">Scalable Infra</span>
           </div>
 
-          <h2 className="text-[40px] md:text-[48px] font-bold text-black text-center leading-tight">
+          <h2 className="text-[32px] sm:text-[40px] md:text-[48px] font-bold text-black text-center leading-tight">
             Reliable APIs. Built for Scale.
           </h2>
-          <p className="text-[16px] md:text-[18px] text-[#5D5D5D] text-center opacity-80 w-full px-20 max-w-[860px]">
+          <p className="text-[16px] md:text-[18px] text-[#5D5D5D] text-center opacity-80 w-full px-4 sm:px-10 lg:px-20 max-w-[860px]">
             Purpose-built, reliable infrastructure with deep liquidity
-            <br />
+            <br className="hidden sm:block" />
+            <span className="sm:hidden"> </span>
             to supercharge your ambitious growth journey.
           </p>
         </motion.div>
@@ -65,13 +66,13 @@ export function PartnersSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.05 }}
               whileHover={{ scale: 1.03, y: -2 }}
-              className="bg-white border border-[#E8E8E8] rounded-[20px] flex items-center justify-center w-full h-[88px] sm:h-[96px]"
+              className="bg-white border border-[#E8E8E8] rounded-[20px] flex items-center justify-center w-full h-[80px] sm:h-[88px] md:h-[96px]"
               style={{ maxWidth: 278 }}
             >
               <img
                 src={`/partners/${partner.logo}`}
                 alt={partner.name}
-                className="w-[140px] sm:w-[168px] h-[40px] sm:h-[54px] object-contain"
+                className="w-[120px] sm:w-[140px] md:w-[168px] h-[32px] sm:h-[40px] md:h-[54px] object-contain"
               />
             </motion.div>
           ))}

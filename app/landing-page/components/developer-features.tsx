@@ -70,12 +70,13 @@ export function DeveloperFeatures() {
             </span>
             For Developers
           </div>
-          <h2 className="max-w-[860px] text-center text-[48px] leading-[1.16] font-bold text-black">
+          <h2 className="max-w-[860px] text-center text-[32px] sm:text-[40px] lg:text-[48px] leading-[1.16] font-bold text-black">
             Built for Developers, by Experts.
           </h2>
-          <p className="max-w-[860px] px-10 text-center text-[18px] leading-[1.6] text-[#5D5D5D]/80">
+          <p className="max-w-[860px] px-4 sm:px-10 text-center text-[16px] sm:text-[18px] leading-[1.6] text-[#5D5D5D]/80">
             Power instant settlements to all of South East Asia. 
-            <br />
+            <br className="hidden sm:block" />
+            <span className="sm:hidden"> </span>
             We take care of tech & compliances.
           </p>
         </motion.div>
@@ -146,7 +147,8 @@ export function DeveloperFeatures() {
           </h2>
           <p className="max-w-[860px] px-4 sm:px-10 lg:px-20 text-center text-[16px] sm:text-[18px] leading-[1.6] text-[#5D5D5D]/80">
             Whether you're a start-up or a large financial institution,
-            <br />
+            <br className="hidden sm:block" />
+            <span className="sm:hidden"> </span>
             our system is designed only for your success.
           </p>
         </motion.div>
