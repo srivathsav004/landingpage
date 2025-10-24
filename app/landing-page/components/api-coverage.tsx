@@ -99,16 +99,16 @@ export function ApiCoverage() {
               <h2 
                 className="font-bold text-gray-900"
                 style={{ 
-                  fontSize: 'clamp(1.5rem, 4vw, 2.75rem)',
+                  fontSize: 'clamp(1.5rem, 2.5vw, 2.25rem)',
                   lineHeight: '1.2',
                 }}
               >
                 Single API.
               </h2>
               <h2 
-                className="font-bold text-gray-900"
+                className="font-bold text-gray-900 whitespace-nowrap"
                 style={{ 
-                  fontSize: 'clamp(1.5rem, 4vw, 2.75rem)',
+                  fontSize: 'clamp(1.5rem, 2.5vw, 2.25rem)',
                   lineHeight: '1.2',
                 }}
               >
