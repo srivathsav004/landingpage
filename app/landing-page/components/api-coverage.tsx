@@ -89,20 +89,18 @@ export function ApiCoverage() {
           style={{ gap: 'clamp(2rem, 5vw, 6rem)' }}
         >
           {/* LEFT: Heading + Buttons */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(1.5rem, 2.5vw, 2rem)', minWidth: '0' }}>
+          <div className="flex flex-col items-center lg:items-start gap-6 lg:gap-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
-              style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem', minWidth: '0' }}
+              className="text-center lg:text-left"
             >
               <h2 
                 className="font-bold text-gray-900"
                 style={{ 
-                  fontSize: 'clamp(1.1rem, 2.5vw, 2.75rem)',
+                  fontSize: 'clamp(1.5rem, 4vw, 2.75rem)',
                   lineHeight: '1.2',
-                  whiteSpace: 'nowrap',
-                  overflow: 'visible',
                 }}
               >
                 Single API.
@@ -110,17 +108,15 @@ export function ApiCoverage() {
               <h2 
                 className="font-bold text-gray-900"
                 style={{ 
-                  fontSize: 'clamp(1.1rem, 2.5vw, 2.75rem)',
+                  fontSize: 'clamp(1.5rem, 4vw, 2.75rem)',
                   lineHeight: '1.2',
-                  whiteSpace: 'nowrap',
-                  overflow: 'visible',
                 }}
               >
                 Entire South East Asia.
               </h2>
             </motion.div>
             <motion.div 
-              className="inline-flex bg-white rounded-xl shadow-md"
+              className="inline-flex bg-white rounded-xl shadow-md mx-auto lg:mx-0"
               style={{ 
                 padding: 'clamp(0.3rem, 0.6vw, 0.5rem)',
                 gap: 'clamp(0.4rem, 0.8vw, 0.75rem)',
@@ -134,8 +130,8 @@ export function ApiCoverage() {
                 size="lg"
                 className="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl whitespace-nowrap transition-all"
                 style={{
-                  padding: 'clamp(0.5rem, 1vw, 0.875rem) clamp(1rem, 2vw, 1.5rem)',
-                  fontSize: 'clamp(0.75rem, 1vw, 0.9rem)',
+                  padding: 'clamp(0.75rem, 1.5vw, 0.875rem) clamp(1.25rem, 2.5vw, 1.5rem)',
+                  fontSize: 'clamp(0.875rem, 1.2vw, 0.9rem)',
                 }}
                 asChild
               >
@@ -146,8 +142,8 @@ export function ApiCoverage() {
                 variant="outline"
                 className="bg-white text-gray-900 font-semibold rounded-lg border-2 border-gray-200 hover:border-emerald-500 hover:bg-emerald-50 whitespace-nowrap transition-all"
                 style={{
-                  padding: 'clamp(0.5rem, 1vw, 0.875rem) clamp(1rem, 2vw, 1.5rem)',
-                  fontSize: 'clamp(0.75rem, 1vw, 0.9rem)',
+                  padding: 'clamp(0.75rem, 1.5vw, 0.875rem) clamp(1.25rem, 2.5vw, 1.5rem)',
+                  fontSize: 'clamp(0.875rem, 1.2vw, 0.9rem)',
                 }}
                 asChild
               >
