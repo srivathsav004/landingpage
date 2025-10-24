@@ -144,7 +144,7 @@ export function HeroSection() {
       </motion.nav>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gray-50">
+      <section className="relative overflow-hidden bg-white">
         <div className="w-full px-4 sm:px-6 lg:px-8 pt-3 sm:pt-5 md:pt-8 pb-0">
           <motion.div
             initial={{ opacity: 0, scale: 1.02 }}

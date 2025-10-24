@@ -59,29 +59,30 @@ const chips: Chip[] = [
 
 export function ApiCoverage() {
   return (
-    <section
-      className="relative w-full"
-      style={{
-        background:
-          'linear-gradient(90deg, rgba(210,225,255,0.2) 7.77%, rgba(217,255,237,0.1) 96.99%)',
-        borderRadius: '1.5rem',
-        padding: 'clamp(3rem, 5vw, 6rem) clamp(1.5rem, 3vw, 3rem)',
-        overflow: 'visible',
-      }}
-    >
-      {/* Background dots */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          backgroundImage: 'url(/api-coverage/bg/dots-pattern.png)',
-          backgroundRepeat: 'repeat',
-          opacity: 0.5,
-          borderRadius: '1.5rem',
-        }}
-      />
-
+    <section className="relative w-full bg-white py-20">
       <div className="relative mx-auto w-full" style={{ maxWidth: '1400px' }}>
+        {/* Content container with dot pattern background */}
+        <div
+          className="relative w-full"
+          style={{
+            background:
+              'linear-gradient(90deg, rgba(210,225,255,0.2) 7.77%, rgba(217,255,237,0.1) 96.99%)',
+            borderRadius: '1.5rem',
+            padding: 'clamp(3rem, 5vw, 6rem) clamp(1.5rem, 3vw, 3rem)',
+            overflow: 'visible',
+          }}
+        >
+          {/* Background dots */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0"
+            style={{
+              backgroundImage: 'url(/api-coverage/bg/dots-pattern.png)',
+              backgroundRepeat: 'repeat',
+              opacity: 0.5,
+              borderRadius: '1.5rem',
+            }}
+          />
         {/* Grid with Figma ratios: Equal spacing for all 3 sections */}
         <div 
           className="grid grid-cols-1 lg:grid-cols-3 items-center" 
@@ -431,6 +432,7 @@ export function ApiCoverage() {
               })}
             </div>
           </div>
+        </div>
         </div>
       </div>
     </section>

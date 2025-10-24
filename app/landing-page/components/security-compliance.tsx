@@ -17,7 +17,7 @@ const complianceFeatures = [
 
 export function SecurityCompliance() {
   return (
-    <section className="py-20 bg-gray-50" id="security">
+    <section className="py-20 bg-white" id="security">
       <div className="mx-auto px-4 flex flex-col items-center" style={{ maxWidth: 1202 }}>
         {/* Header */}
         <motion.div

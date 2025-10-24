@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 export function Footer() {
   return (
-    <footer className="relative w-full overflow-hidden">
+    <footer className="relative w-full overflow-hidden bg-white">
       {/* Main Footer Container */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
