@@ -24,17 +24,17 @@ const partners = [
 
 export function PartnersSection() {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-16 sm:py-20 bg-white">
       <div className="mx-auto px-4 flex flex-col items-center" style={{ maxWidth: 860 }}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="w-full flex flex-col items-center gap-5 mb-10"
+          className="w-full flex flex-col items-center gap-4 sm:gap-5 mb-8 sm:mb-10"
         >
-          <div className="inline-flex items-center gap-2 rounded-2xl border border-emerald-400 bg-white px-4 h-10 text-sm text-emerald-700 shadow-[0_10px_18px_0_rgba(0,0,0,0.04),0_2px_6px_0_rgba(0,0,0,0.04),0_0_1px_0_rgba(0,0,0,0.04)]">
-            <Sparkles className="w-4 h-4" />
+          <div className="inline-flex items-center gap-2 rounded-2xl border border-emerald-400 bg-white px-3 sm:px-4 h-8 sm:h-10 text-xs sm:text-sm text-emerald-700 shadow-[0_10px_18px_0_rgba(0,0,0,0.04),0_2px_6px_0_rgba(0,0,0,0.04),0_0_1px_0_rgba(0,0,0,0.04)]">
+            <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             <span className="font-medium">Scalable Infra</span>
           </div>
 
@@ -50,29 +50,48 @@ export function PartnersSection() {
         </motion.div>
       </div>
 
-      <div className="mx-auto" style={{ maxWidth: 1160 }}>
+      <div className="mx-auto px-4" style={{ maxWidth: 1200 }}>
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5 lg:gap-4 px-4"
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6"
         >
           {partners.map((partner, index) => (
             <motion.div
               key={partner.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 24, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
-              whileHover={{ scale: 1.03, y: -2 }}
-              className="bg-white border border-[#E8E8E8] rounded-[20px] flex items-center justify-center w-full h-[80px] sm:h-[88px] md:h-[96px]"
-              style={{ maxWidth: 278 }}
+              transition={{ 
+                duration: 0.6, 
+                delay: index * 0.03,
+                type: 'spring',
+                stiffness: 200,
+                damping: 20
+              }}
+              whileHover={{ 
+                y: -4, 
+                scale: 1.02,
+                transition: { 
+                  type: 'spring', 
+                  stiffness: 400, 
+                  damping: 25 
+                }
+              }}
+              whileTap={{ scale: 0.98 }}
+              className="group bg-white border border-[#E8E8E8] rounded-[20px] flex items-center justify-center w-full h-[70px] sm:h-[80px] md:h-[88px] lg:h-[100px] cursor-pointer shadow-sm hover:shadow-md hover:border-emerald-200 transition-all duration-300"
+              style={{ maxWidth: 280 }}
             >
-              <img
+              <motion.img
                 src={`/partners/${partner.logo}`}
                 alt={partner.name}
-                className="w-[120px] sm:w-[140px] md:w-[168px] h-[32px] sm:h-[40px] md:h-[54px] object-contain"
+                className="w-[100px] sm:w-[120px] md:w-[140px] lg:w-[168px] h-[24px] sm:h-[32px] md:h-[40px] lg:h-[54px] object-contain transition-all duration-300 group-hover:scale-105"
+                whileHover={{
+                  filter: 'brightness(1.1)',
+                  transition: { duration: 0.2 }
+                }}
               />
             </motion.div>
           ))}

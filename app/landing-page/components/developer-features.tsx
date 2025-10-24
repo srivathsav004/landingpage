@@ -36,13 +36,25 @@ const container = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: { staggerChildren: 0.12 },
+    transition: { 
+      staggerChildren: 0.15,
+      delayChildren: 0.1
+    },
   },
 };
 
 const item = {
-  hidden: { opacity: 0, y: 18 },
-  show: { opacity: 1, y: 0 },
+  hidden: { opacity: 0, y: 24, scale: 0.95 },
+  show: { 
+    opacity: 1, 
+    y: 0, 
+    scale: 1,
+    transition: {
+      type: 'spring' as const,
+      stiffness: 200,
+      damping: 20
+    }
+  },
 };
 
 export function DeveloperFeatures() {
@@ -86,29 +98,51 @@ export function DeveloperFeatures() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
-          className="mx-auto grid max-w-[1202px] grid-cols-1 gap-8 md:grid-cols-3"
+          className="mx-auto grid max-w-[1202px] grid-cols-1 gap-6 sm:gap-8 md:grid-cols-3"
         >
           {features.map((feature, index) => (
-            <motion.div key={index} variants={item} className="p-3">
+            <motion.div 
+              key={index} 
+              variants={item} 
+              className="p-2 sm:p-3"
+              whileHover={{ y: -8, scale: 1.02 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+            >
               <Card
-                className="flex h-[410px] flex-col items-center justify-start rounded-2xl border-0 shadow-[0_6px_24px_rgba(0,0,0,0.06)]"
+                className="flex h-auto sm:h-[380px] md:h-[410px] flex-col items-center justify-start rounded-2xl border-0 shadow-[0_6px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.12)] transition-all duration-300"
                 style={{
                   background:
                     'linear-gradient(199.26deg, rgba(217, 255, 237, 0.3) 38.67%, rgba(210, 225, 255, 0.3) 109.06%)',
                 }}
               >
-                <CardContent className="flex w-full flex-1 flex-col items-center p-8 text-center">
+                <CardContent className="flex w-full flex-1 flex-col items-center p-6 sm:p-8 text-center">
                   <motion.div
-                    className="mb-8 mt-2 flex h-44 w-44 items-center justify-center rounded-2xl bg-transparent"
-                    whileHover={{ y: -4, scale: 1.02 }}
-                    transition={{ type: 'spring', stiffness: 220, damping: 18 }}
+                    className="mb-6 sm:mb-8 mt-2 flex h-32 w-32 sm:h-40 sm:w-40 md:h-44 md:w-44 items-center justify-center rounded-2xl bg-transparent"
+                    whileHover={{ 
+                      y: -6, 
+                      scale: 1.05,
+                      rotate: [0, -2, 2, 0]
+                    }}
+                    transition={{ 
+                      type: 'spring', 
+                      stiffness: 300, 
+                      damping: 15,
+                      rotate: { duration: 0.6, ease: "easeInOut" }
+                    }}
                   >
-                    <Image src={feature.image} alt={feature.title} width={150} height={150} priority />
+                    <Image 
+                      src={feature.image} 
+                      alt={feature.title} 
+                      width={150} 
+                      height={150} 
+                      priority 
+                      className="object-contain"
+                    />
                   </motion.div>
-                  <h3 className="mb-2 text-2xl font-semibold text-gray-900">
+                  <h3 className="mb-3 text-xl sm:text-2xl font-semibold text-gray-900 leading-tight">
                     {feature.title}
                   </h3>
-                  <p className="max-w-[358px] text-base leading-relaxed text-gray-600">
+                  <p className="max-w-[358px] text-sm sm:text-base leading-relaxed text-gray-600">
                     {feature.description}
                   </p>
                 </CardContent>
@@ -158,12 +192,17 @@ export function DeveloperFeatures() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
-          className="mx-auto grid max-w-[1202px] grid-cols-1 gap-8 md:grid-cols-2"
+          className="mx-auto grid max-w-[1202px] grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2"
         >
           {/* Card 1 */}
-          <motion.div variants={item} className="p-3">
+          <motion.div 
+            variants={item} 
+            className="p-2 sm:p-3"
+            whileHover={{ y: -8, scale: 1.02 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+          >
             <Card
-              className="flex h-auto sm:h-[326px] flex-col md:flex-row items-center justify-between rounded-2xl border-0 shadow-[0_6px_24px_rgba(0,0,0,0.06)]"
+              className="flex h-auto sm:h-[300px] md:h-[326px] flex-col md:flex-row items-center justify-between rounded-2xl border-0 shadow-[0_6px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.12)] transition-all duration-300"
               style={{
                 background:
                   'linear-gradient(199.26deg, rgba(217, 255, 237, 0.3) 38.67%, rgba(210, 225, 255, 0.3) 109.06%)',
@@ -171,7 +210,7 @@ export function DeveloperFeatures() {
             >
               <CardContent className="flex w-full flex-1 flex-col md:flex-row items-center gap-4 md:gap-6 p-6 md:p-8">
                 <div className="flex-1 text-center md:text-left">
-                  <h3 className="mb-3 text-[24px] sm:text-[28px] leading-[1.2] font-semibold tracking-[-0.02em] text-black">
+                  <h3 className="mb-3 text-[20px] sm:text-[24px] md:text-[28px] leading-[1.2] font-semibold tracking-[-0.02em] text-black">
                     No Monthly
                     <br />
                     Commitments
@@ -182,9 +221,18 @@ export function DeveloperFeatures() {
                   </p>
                 </div>
                 <motion.div
-                  className="flex h-[120px] w-[140px] sm:h-[150px] sm:w-[170px] md:h-[189px] md:w-[206px] shrink-0 items-center justify-center rounded-2xl bg-transparent"
-                  whileHover={{ y: -4, scale: 1.02 }}
-                  transition={{ type: 'spring', stiffness: 220, damping: 18 }}
+                  className="flex h-[100px] w-[120px] sm:h-[120px] sm:w-[140px] md:h-[150px] md:w-[170px] lg:h-[189px] lg:w-[206px] shrink-0 items-center justify-center rounded-2xl bg-transparent"
+                  whileHover={{ 
+                    y: -6, 
+                    scale: 1.05,
+                    rotate: [0, -1, 1, 0]
+                  }}
+                  transition={{ 
+                    type: 'spring', 
+                    stiffness: 300, 
+                    damping: 15,
+                    rotate: { duration: 0.5, ease: "easeInOut" }
+                  }}
                 >
                   <Image 
                     src="/developer/calendar.png" 
@@ -199,9 +247,14 @@ export function DeveloperFeatures() {
           </motion.div>
 
           {/* Card 2 */}
-          <motion.div variants={item} className="p-3">
+          <motion.div 
+            variants={item} 
+            className="p-2 sm:p-3"
+            whileHover={{ y: -8, scale: 1.02 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+          >
             <Card
-              className="flex h-auto sm:h-[326px] flex-col md:flex-row items-center justify-between rounded-2xl border-0 shadow-[0_6px_24px_rgba(0,0,0,0.06)]"
+              className="flex h-auto sm:h-[300px] md:h-[326px] flex-col md:flex-row items-center justify-between rounded-2xl border-0 shadow-[0_6px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.12)] transition-all duration-300"
               style={{
                 background:
                   'linear-gradient(199.26deg, rgba(217, 255, 237, 0.3) 38.67%, rgba(210, 225, 255, 0.3) 109.06%)',
@@ -209,7 +262,7 @@ export function DeveloperFeatures() {
             >
               <CardContent className="flex w-full flex-1 flex-col md:flex-row items-center gap-4 md:gap-6 p-6 md:p-8">
                 <div className="flex-1 text-center md:text-left">
-                  <h3 className="mb-3 text-[24px] sm:text-[28px] leading-[1.2] font-semibold tracking-[-0.02em] text-black">
+                  <h3 className="mb-3 text-[20px] sm:text-[24px] md:text-[28px] leading-[1.2] font-semibold tracking-[-0.02em] text-black">
                     Pay As
                     <br />
                     You Scale
@@ -220,9 +273,18 @@ export function DeveloperFeatures() {
                   </p>
                 </div>
                 <motion.div
-                  className="flex h-[120px] w-[140px] sm:h-[150px] sm:w-[170px] md:h-[189px] md:w-[206px] shrink-0 items-center justify-center rounded-2xl bg-transparent"
-                  whileHover={{ y: -4, scale: 1.02 }}
-                  transition={{ type: 'spring', stiffness: 220, damping: 18 }}
+                  className="flex h-[100px] w-[120px] sm:h-[120px] sm:w-[140px] md:h-[150px] md:w-[170px] lg:h-[189px] lg:w-[206px] shrink-0 items-center justify-center rounded-2xl bg-transparent"
+                  whileHover={{ 
+                    y: -6, 
+                    scale: 1.05,
+                    rotate: [0, -1, 1, 0]
+                  }}
+                  transition={{ 
+                    type: 'spring', 
+                    stiffness: 300, 
+                    damping: 15,
+                    rotate: { duration: 0.5, ease: "easeInOut" }
+                  }}
                 >
                   <Image 
                     src="/developer/scale.png" 
