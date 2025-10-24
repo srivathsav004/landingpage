@@ -323,7 +323,7 @@ export function ApiCoverage() {
                     const topPercent = (parseFloat(chip.dot.top) / 380) * 100;
                     const leftPercent = (parseFloat(chip.dot.left) / 380) * 100;
 
-                    const labelPositions = {
+                    const labelPositions: Record<string, { top: string; left: string }> = {
                       INR: { top: '-50px', left: '-20px' },
                       PHP: { top: '-20px', left: '30px' },
                       VND: { top: '-10px', left: '30px' },
