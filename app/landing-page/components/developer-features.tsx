@@ -167,39 +167,35 @@ export function DeveloperFeatures() {
           </p>
         </motion.div>
 
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
-          className="mx-auto grid max-w-[1202px] grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8"
-        >
+        <div className="mx-auto max-w-[1202px] flex flex-col gap-4 sm:gap-6 lg:gap-8 lg:grid lg:grid-cols-2">
           {/* Card 1 - No Monthly Commitments */}
           <motion.div 
-            variants={item} 
+            variants={item}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
             className="w-full"
             whileHover={{ y: -8, scale: 1.02 }}
             transition={{ type: 'spring', stiffness: 300, damping: 20 }}
           >
             <Card
-              className="flex flex-col items-center rounded-2xl border-0 shadow-[0_6px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.12)] transition-all duration-300 h-full min-h-[280px] sm:min-h-[300px]"
+              className="flex flex-col md:flex-row items-center rounded-2xl border-0 shadow-[0_6px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.12)] transition-all duration-300 h-full min-h-[320px] lg:min-h-[320px] xl:min-h-[340px]"
               style={{
                 background:
                   'linear-gradient(199.26deg, rgba(217, 255, 237, 0.3) 38.67%, rgba(210, 225, 255, 0.3) 109.06%)',
               }}
             >
-              <CardContent className="flex w-full flex-1 flex-col items-center justify-between gap-6 p-5 sm:p-6 md:p-8">
-                <div className="flex-1 text-center w-full">
-                  <h3 className="mb-3 sm:mb-4 text-xl sm:text-2xl md:text-[28px] leading-tight font-semibold tracking-tight text-black">
-                    No Monthly Commitments
+              <CardContent className="flex w-full flex-col items-center gap-6 p-6 sm:p-8 lg:flex-row lg:justify-between lg:p-10 xl:gap-8 xl:p-12">
+                <div className="flex-1 text-center lg:text-left w-full lg:w-auto">
+                  <h3 className="mb-3 text-xl sm:text-2xl lg:text-[26px] xl:text-[28px] leading-tight font-semibold tracking-tight text-black">
+                    No Monthly<br />Commitments
                   </h3>
-                  <p className="text-sm sm:text-base leading-relaxed text-black/80 max-w-md mx-auto">
-                    Simply start building without worrying about any fixed monthly
-                    commitments, ever.
+                  <p className="text-sm sm:text-[15px] lg:text-base leading-relaxed text-black/80 max-w-[280px] mx-auto lg:mx-0 lg:max-w-none">
+                    Simply start building without worrying about any fixed monthly commitments, ever.
                   </p>
                 </div>
                 <motion.div
-                  className="flex items-center justify-center rounded-2xl bg-transparent"
+                  className="flex items-center justify-center rounded-2xl bg-transparent shrink-0"
                   whileHover={{ 
                     y: -6, 
                     scale: 1.05,
@@ -217,7 +213,7 @@ export function DeveloperFeatures() {
                     alt="No Monthly Commitments" 
                     width={206} 
                     height={189}
-                    className="w-28 h-24 sm:w-32 sm:h-28 md:w-40 md:h-32 lg:w-52 lg:h-40 object-contain"
+                    className="w-28 h-24 sm:w-36 sm:h-32 lg:w-40 lg:h-36 xl:w-48 xl:h-44 object-contain"
                   />
                 </motion.div>
               </CardContent>
@@ -226,30 +222,32 @@ export function DeveloperFeatures() {
 
           {/* Card 2 - Pay As You Scale */}
           <motion.div 
-            variants={item} 
+            variants={item}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
             className="w-full"
             whileHover={{ y: -8, scale: 1.02 }}
             transition={{ type: 'spring', stiffness: 300, damping: 20 }}
           >
             <Card
-              className="flex flex-col items-center rounded-2xl border-0 shadow-[0_6px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.12)] transition-all duration-300 h-full min-h-[280px] sm:min-h-[300px]"
+              className="flex flex-col md:flex-row items-center rounded-2xl border-0 shadow-[0_6px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.12)] transition-all duration-300 h-full min-h-[320px] md:min-h-[320px] lg:min-h-[340px]"
               style={{
                 background:
                   'linear-gradient(199.26deg, rgba(217, 255, 237, 0.3) 38.67%, rgba(210, 225, 255, 0.3) 109.06%)',
               }}
             >
-              <CardContent className="flex w-full flex-1 flex-col items-center justify-between gap-6 p-5 sm:p-6 md:p-8">
-                <div className="flex-1 text-center w-full">
-                  <h3 className="mb-3 sm:mb-4 text-xl sm:text-2xl md:text-[28px] leading-tight font-semibold tracking-tight text-black">
-                    Pay As You Scale
+              <CardContent className="flex w-full flex-col items-center gap-6 p-6 sm:p-8 lg:flex-row lg:justify-between lg:p-10 xl:gap-8 xl:p-12">
+                <div className="flex-1 text-center lg:text-left w-full lg:w-auto">
+                  <h3 className="mb-3 text-xl sm:text-2xl lg:text-[26px] xl:text-[28px] leading-tight font-semibold tracking-tight text-black">
+                    Pay As<br />You Scale
                   </h3>
-                  <p className="text-sm sm:text-base leading-relaxed text-black/80 max-w-md mx-auto">
-                    Enjoy our affordable volume-based fee model, inherently designed to
-                    help you scale.
+                  <p className="text-sm sm:text-[15px] lg:text-base leading-relaxed text-black/80 max-w-[280px] mx-auto lg:mx-0 lg:max-w-none">
+                    Enjoy our affordable volume-based fee model, inherently designed to help you scale.
                   </p>
                 </div>
                 <motion.div
-                  className="flex items-center justify-center rounded-2xl bg-transparent"
+                  className="flex items-center justify-center rounded-2xl bg-transparent shrink-0"
                   whileHover={{ 
                     y: -6, 
                     scale: 1.05,
@@ -267,13 +265,13 @@ export function DeveloperFeatures() {
                     alt="Pay As You Scale" 
                     width={206} 
                     height={189}
-                    className="w-28 h-24 sm:w-32 sm:h-28 md:w-40 md:h-32 lg:w-52 lg:h-40 object-contain"
+                    className="w-28 h-24 sm:w-36 sm:h-32 lg:w-40 lg:h-36 xl:w-48 xl:h-44 object-contain"
                   />
                 </motion.div>
               </CardContent>
             </Card>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
     </>
